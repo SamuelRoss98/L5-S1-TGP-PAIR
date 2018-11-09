@@ -185,11 +185,11 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"
-/I "C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine"
-/Yc"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.cpp"
-/Fo"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.obj"
+/I C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine
+/Yc"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.cpp"
+/Fo"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.obj"
 /TP
 /GR-
 /W4

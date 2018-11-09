@@ -23,9 +23,9 @@
 /wd4838
 /we4668
 /I .
-/I "C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair"
-/I "C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Source"
-/I "C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Source\TGPPair"
+/I C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair
+/I C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Source
+/I C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair
 /I Runtime
 /I Runtime\Core\Public
 /I Runtime\Core
@@ -409,12 +409,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"
-/FI"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Yu"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair\TGPPair.init.gen.cpp"
-/FI"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\Definitions.TGPPair.h"
-/Fo"C:\Users\h014654h\Documents\Unreal Projects\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\TGPPair.init.gen.cpp.obj"
+/FI"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Yu"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair\TGPPair.init.gen.cpp"
+/FI"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\Definitions.TGPPair.h"
+/Fo"C:\Users\j014066g\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\TGPPair.init.gen.cpp.obj"
 /TP
 /GR-
 /W4
