@@ -77,4 +77,4 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 # Removes standard assets that won't be changed.
-Content/StandardAssets/*
+StandardAssets/*
