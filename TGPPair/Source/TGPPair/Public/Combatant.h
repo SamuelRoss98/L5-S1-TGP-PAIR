@@ -27,6 +27,11 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
+	// Combat level of the combatant.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat)
+	int CombatLevel = 0;
 
-	
+	// Damage of combatant before any modifiers are applied.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat)
+	int BaseDamage = 0;
 };
