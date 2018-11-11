@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\TGPPair.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{A472D46C-F3F5-4A9B-AF04-B9F02BCB57BE}</UniqueIdentifier>
+			<UniqueIdentifier>{D214FAA0-CF91-4BD3-AB3E-C80CEF56F5CF}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{684B4451-F7E0-4504-9117-F7D862E0F520}</UniqueIdentifier>
+			<UniqueIdentifier>{4066BFDB-BD37-4043-AF7F-A397645B251C}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\TGPPair">
-			<UniqueIdentifier>{D78617DD-946C-49C3-BED6-6B3048DCF91E}</UniqueIdentifier>
+			<UniqueIdentifier>{5D766192-B29A-4C15-9251-00346357FAFD}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair\TGPPair.Build.cs">
 			<Filter>Source\TGPPair</Filter>
