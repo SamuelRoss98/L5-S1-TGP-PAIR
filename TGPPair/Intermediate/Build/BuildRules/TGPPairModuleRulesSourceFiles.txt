@@ -1,3 +1,0 @@
-D:\University\Level 5\Modules\Technical Games Production\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPair.Build.cs
-D:\University\Level 5\Modules\Technical Games Production\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair.Target.cs
-D:\University\Level 5\Modules\Technical Games Production\L5-S1-TGP-PAIR\TGPPair\Source\TGPPairEditor.Target.cs
