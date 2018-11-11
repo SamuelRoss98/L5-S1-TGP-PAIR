@@ -180,16 +180,16 @@
 /I ThirdParty
 /I ThirdParty\libSampleRate\Public
 /I "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\INCLUDE"
-/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\include\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"
-/I F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine
-/Yc"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.cpp"
-/Fo"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.obj"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"
+/I "D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine"
+/Yc"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.cpp"
+/Fo"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.obj"
 /TP
 /GR-
 /W4

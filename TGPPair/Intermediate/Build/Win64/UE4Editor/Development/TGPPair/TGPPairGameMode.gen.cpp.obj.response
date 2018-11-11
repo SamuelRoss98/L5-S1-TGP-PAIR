@@ -23,9 +23,9 @@
 /wd4838
 /we4668
 /I .
-/I F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair
-/I F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Source
-/I F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair
+/I "D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair"
+/I "D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source"
+/I "D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair"
 /I Runtime
 /I Runtime\Core\Public
 /I Runtime\Core
@@ -404,17 +404,17 @@
 /I ThirdParty\libSampleRate\Public
 /I ThirdParty\libSampleRate
 /I "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\INCLUDE"
-/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\include\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\ucrt"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\shared"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17134.0\winrt"
-/FI"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Yu"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair\TGPPairGameMode.gen.cpp"
-/FI"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\Definitions.TGPPair.h"
-/Fo"F:\GameDev\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\TGPPairGameMode.gen.cpp.obj"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"
+/FI"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Yu"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\TGPPairEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Inc\TGPPair\TGPPairGameMode.gen.cpp"
+/FI"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\Definitions.TGPPair.h"
+/Fo"D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Intermediate\Build\Win64\UE4Editor\Development\TGPPair\TGPPairGameMode.gen.cpp.obj"
 /TP
 /GR-
 /W4
