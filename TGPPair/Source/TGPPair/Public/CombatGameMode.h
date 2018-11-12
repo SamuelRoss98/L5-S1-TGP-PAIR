@@ -6,6 +6,9 @@
 #include "GameFramework/GameModeBase.h"
 #include "CombatGameMode.generated.h"
 
+class ACombatant;
+class UTGPGameInstance;
+
 /**
  * 
  */
@@ -15,8 +18,33 @@ class TGPPAIR_API ACombatGameMode : public AGameModeBase
 	GENERATED_BODY()
 
 public:
-
 	virtual void Tick(float DeltaSeconds) override;
 
 	virtual void BeginPlay() override;
+
+private:
+	// Creates Combatants for player party.
+	void SpawnPlayerParty();
+
+	// Creates Combatants for encountered party.
+	void SpawnEncounteredParty();
+
+public:
+	// Combatant type so spawn for the player.
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ACombatant> PlayerCombatantToSpawn;
+
+	UPROPERTY(EditDefaultsOnly)
+	// Combatant type to spawn for AI.
+	TSubclassOf<ACombatant> AICombatantToSpawn;
+
+private:
+	// Combatants belonging to player party.
+	TArray<ACombatant*> PlayerParty;
+
+	// Combatants belonging to encountered party.
+	TArray<ACombatant*> EncounteredParty;
+
+	// TGPGameInstance.
+	UTGPGameInstance* GameInstance = nullptr;
 };
