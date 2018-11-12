@@ -13,4 +13,10 @@ UCLASS()
 class TGPPAIR_API ACombatGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+
+	virtual void Tick(float DeltaSeconds) override;
+
+	virtual void BeginPlay() override;
 };
