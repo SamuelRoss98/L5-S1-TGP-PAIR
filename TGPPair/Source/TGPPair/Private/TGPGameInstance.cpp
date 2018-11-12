@@ -2,6 +2,12 @@
 
 #include "TGPGameInstance.h"
 
+int UTGPGameInstance::GetPlayerPartySize() const
+{
+	return PlayerPartySize;
+}
 
-
-
+int UTGPGameInstance::GetEncounterPartySize() const
+{
+	return EncounterPartySize;
+}
