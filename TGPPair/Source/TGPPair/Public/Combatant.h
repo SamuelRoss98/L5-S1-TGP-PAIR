@@ -26,6 +26,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Returns true if the Combatant has already used their attack this turn.
+	bool HasAttackedThisTurn() const;
+
+	// Flag whether a Combatant has used their attack for the turn.
+	void SetAttackedThisTurn(bool setting);
+
 public:
 	// Combat level of the combatant.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat)
@@ -34,4 +40,8 @@ public:
 	// Damage of combatant before any modifiers are applied.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat)
 	int BaseDamage = 0;
+
+private:
+	// True is this combatant has used their attack this turn.
+	bool bHasAttackedThisTurn = false;
 };

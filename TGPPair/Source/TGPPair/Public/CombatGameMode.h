@@ -23,11 +23,14 @@ public:
 	virtual void BeginPlay() override;
 
 private:
-	// Creates Combatants for player party.
-	void SpawnPlayerParty();
+	// Creates the player and AI Combatant(s).
+	void SpawnCombatants();
 
-	// Creates Combatants for encountered party.
-	void SpawnEncounteredParty();
+	// Spawns the player Combatant.
+	void SpawnPlayerCombatant();
+
+	// Creates an AI Combatant for a given team.
+	void SpawnAICombatant(bool PlayerTeam, int PartyIndex);
 
 public:
 	// Combatant type so spawn for the player.

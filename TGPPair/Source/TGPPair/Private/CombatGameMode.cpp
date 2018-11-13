@@ -19,39 +19,52 @@ void ACombatGameMode::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("CombatGameMode failed to get the TGPGameInstance."))
 	}
 
-	SpawnPlayerParty();
-	SpawnEncounteredParty();
+	SpawnCombatants();
 
+	UE_LOG(LogTemp, Warning, TEXT("Player party has %s members."), *(FString::FromInt(PlayerParty.Num())))
+	UE_LOG(LogTemp, Warning, TEXT("Encounter party has %s members."), *(FString::FromInt(EncounteredParty.Num())))
 }
 
-void ACombatGameMode::SpawnPlayerParty()
+// Creates the player and AI Combatant(s).
+void ACombatGameMode::SpawnCombatants()
 {
-	int PartySize = GameInstance->GetPlayerPartySize();
+	SpawnPlayerCombatant();
+
+	// Spawn AI members of player party.
+	for (int i = 0; i < GameInstance->GetPlayerPartySize() - 1; i++)
+		SpawnAICombatant(true, i + 1);
+
+	// Spawn encountered party.
+	for (int i = 0; i < GameInstance->GetEncounterPartySize(); i++)
+		SpawnAICombatant(false, i);
 }
 
-void ACombatGameMode::SpawnEncounteredParty()
+// Spawns the player Combatant.
+void ACombatGameMode::SpawnPlayerCombatant()
 {
-	int PartySize = GameInstance->GetEncounterPartySize();
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Instigator;
+	FVector SpawnLocation = FVector::ZeroVector;
+	FRotator SpawnRotation = FRotator::ZeroRotator;
 
-	// Spawn encounter party.
-	for ( int i = 0; i < PartySize; i++)
-	{
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.Instigator = Instigator;
-		FVector SpawnLocation = FVector::ZeroVector;
-		FRotator SpawnRotation = FRotator::ZeroRotator;
+	ACombatant * PlayerCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(PlayerCombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
+	if (PlayerCombatant)
+		PlayerParty.Add(PlayerCombatant);
+}
 
-		ACombatant * newEncounterCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(AICombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
-		if (newEncounterCombatant)
-			EncounteredParty.Add(newEncounterCombatant);
+// Creates an AI Combatant for a given team.
+void ACombatGameMode::SpawnAICombatant(bool PlayerTeam, int PartyIndex)
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = Instigator;
+	FVector SpawnLocation = FVector::ZeroVector;
+	FRotator SpawnRotation = FRotator::ZeroRotator;
 
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("Failed to spawn encounter party member."));
-		}
-			
-	}
+	ACombatant * NewAICombatant = Cast<ACombatant>(GetWorld()->SpawnActor(AICombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
+	if (NewAICombatant)
+		EncounteredParty.Add(NewAICombatant);
 }
 
 void ACombatGameMode::Tick(float DeltaSeconds)

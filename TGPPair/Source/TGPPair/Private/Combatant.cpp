@@ -32,3 +32,15 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
+// Returns true if the Combatant has already used their attack this turn.
+bool ACombatant::HasAttackedThisTurn() const
+{
+	return bHasAttackedThisTurn;
+}
+
+// Flag whether a Combatant has used their attack for the turn.
+void ACombatant::SetAttackedThisTurn(bool setting)
+{
+	bHasAttackedThisTurn = setting;
+}
+
