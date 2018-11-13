@@ -44,3 +44,21 @@ void ACombatant::SetAttackedThisTurn(bool setting)
 	bHasAttackedThisTurn = setting;
 }
 
+// Returns the value of a requested stat for.
+int ACombatant::GetStat(ECombatantStat StatType) const
+{
+	switch (StatType)
+	{
+	case ECombatantStat::CombatLevel:
+		return CombatLevel;
+	case ECombatantStat::Health:
+		return CurrentHealth;
+	case ECombatantStat::Speed:
+		return BaseSpeed;
+	default:
+		return -1;
+	}
+
+	return -1;
+}
+
