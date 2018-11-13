@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+
+#include "Combatant.h"
+
 #include "CombatGameMode.generated.h"
 
-class ACombatant;
 class UTGPGameInstance;
 
 /**
@@ -31,6 +33,12 @@ private:
 
 	// Creates an AI Combatant for a given team.
 	void SpawnAICombatant(bool PlayerTeam, int PartyIndex);
+
+	// Returns the Combatant with the highest value for a given stat.
+	ACombatant* GetCombatantWithHighestStat(ECombatantStat StatType) const;
+
+	// Returns the Combatant with the lowest value for a given stat.
+	ACombatant* GetCombatantWithLowestStat(ECombatantStat StatType) const;
 
 public:
 	// Combatant type so spawn for the player.

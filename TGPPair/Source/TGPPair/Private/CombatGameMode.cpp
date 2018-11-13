@@ -67,6 +67,60 @@ void ACombatGameMode::SpawnAICombatant(bool PlayerTeam, int PartyIndex)
 		EncounteredParty.Add(NewAICombatant);
 }
 
+// Returns the Combatant with the highest value for a given stat.
+ACombatant * ACombatGameMode::GetCombatantWithHighestStat(ECombatantStat StatType) const
+{
+	int HighestValue = -999;
+	ACombatant * CombatantToReturn = nullptr;
+
+	for (int i = 0; i < PlayerParty.Num(); i++)
+	{
+		if (PlayerParty[i]->GetStat(StatType) > HighestValue)
+		{
+			HighestValue = PlayerParty[i]->GetStat(StatType);
+			CombatantToReturn = PlayerParty[i];
+		}
+	}
+
+	for (int i = 0; i < EncounteredParty.Num(); i++)
+	{
+		if (EncounteredParty[i]->GetStat(StatType) > HighestValue)
+		{
+			HighestValue = EncounteredParty[i]->GetStat(StatType);
+			CombatantToReturn = EncounteredParty[i];
+		}
+	}
+
+	return CombatantToReturn;
+}
+
+// Returns the Combatant with the lowest value for a given stat.
+ACombatant * ACombatGameMode::GetCombatantWithLowestStat(ECombatantStat StatType) const
+{
+	int LowestValue = 999;
+	ACombatant * CombatantToReturn = nullptr;
+
+	for (int i = 0; i < PlayerParty.Num(); i++)
+	{
+		if (PlayerParty[i]->GetStat(StatType) < LowestValue)
+		{
+			LowestValue = PlayerParty[i]->GetStat(StatType);
+			CombatantToReturn = PlayerParty[i];
+		}
+	}
+
+	for (int i = 0; i < EncounteredParty.Num(); i++)
+	{
+		if (EncounteredParty[i]->GetStat(StatType) < LowestValue)
+		{
+			LowestValue = EncounteredParty[i]->GetStat(StatType);
+			CombatantToReturn = EncounteredParty[i];
+		}
+	}
+
+	return CombatantToReturn;
+}
+
 void ACombatGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
