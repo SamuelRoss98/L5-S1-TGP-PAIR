@@ -23,6 +23,8 @@ void ACombatGameMode::BeginPlay()
 
 	UE_LOG(LogTemp, Warning, TEXT("Player party has %s members."), *(FString::FromInt(PlayerParty.Num())))
 	UE_LOG(LogTemp, Warning, TEXT("Encounter party has %s members."), *(FString::FromInt(EncounteredParty.Num())))
+
+	bFightOngoing = true;
 }
 
 // Creates the player and AI Combatant(s).

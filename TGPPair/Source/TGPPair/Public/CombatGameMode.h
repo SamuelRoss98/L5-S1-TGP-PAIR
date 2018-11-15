@@ -10,6 +10,7 @@
 #include "CombatGameMode.generated.h"
 
 class UTGPGameInstance;
+class UPartyLayout;
 
 /**
  * 
@@ -49,6 +50,14 @@ public:
 	// Combatant type to spawn for AI.
 	TSubclassOf<ACombatant> AICombatantToSpawn;
 
+	// Layout of the player party.
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UPartyLayout> PlayerPartyLayout;
+
+	// Layout of the encountered party.
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UPartyLayout> EncounteredPartyLayout;
+
 private:
 	// Combatants belonging to player party.
 	TArray<ACombatant*> PlayerParty;
@@ -58,4 +67,7 @@ private:
 
 	// TGPGameInstance.
 	UTGPGameInstance* GameInstance = nullptr;
+
+	// True while the fight is on-going.
+	bool bFightOngoing = false;
 };

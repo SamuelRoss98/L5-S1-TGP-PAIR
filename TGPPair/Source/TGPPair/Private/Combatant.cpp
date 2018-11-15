@@ -2,7 +2,6 @@
 
 #include "Combatant.h"
 
-
 // Sets default values
 ACombatant::ACombatant()
 {
@@ -15,7 +14,6 @@ ACombatant::ACombatant()
 void ACombatant::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
