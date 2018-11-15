@@ -19,7 +19,10 @@ public:
 	float GetGridUnitSizeInCm() const;
 
 	// Returns array of spawn positions.
-	TArray<FIntPoint> GetSpawnPoints() const;
+	TArray<FIntPoint> GetSpawnPointsGrid() const;
+
+	// Returns array of world positions from the grid tiles.
+	TArray<FVector> GetSpawnPointsWorld() const;
 
 protected:
 	// Amount of world space (cm) represented by each grid point.

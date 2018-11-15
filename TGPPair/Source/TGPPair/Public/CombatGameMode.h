@@ -4,13 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-
 #include "Combatant.h"
-
 #include "CombatGameMode.generated.h"
 
 class UTGPGameInstance;
-class UPartyLayout;
 
 /**
  * 
@@ -29,11 +26,8 @@ private:
 	// Creates the player and AI Combatant(s).
 	void SpawnCombatants();
 
-	// Spawns the player Combatant.
-	void SpawnPlayerCombatant();
-
-	// Creates an AI Combatant for a given team.
-	void SpawnAICombatant(bool PlayerTeam, int PartyIndex);
+	// Spawns a combatant.
+	void SpawnCombatant(bool AI, bool PlayerTeam, int PartyPosition, FVector Position);
 
 	// Returns the Combatant with the highest value for a given stat.
 	ACombatant* GetCombatantWithHighestStat(ECombatantStat StatType) const;
@@ -46,17 +40,17 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ACombatant> PlayerCombatantToSpawn;
 
-	UPROPERTY(EditDefaultsOnly)
 	// Combatant type to spawn for AI.
+	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ACombatant> AICombatantToSpawn;
 
-	// Layout of the player party.
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UPartyLayout> PlayerPartyLayout;
+	// Grid spawn points for player party.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FIntPoint> PlayerPartyGridPoints;
 
-	// Layout of the encountered party.
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UPartyLayout> EncounteredPartyLayout;
+	// Grid spawn points for player party.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FIntPoint> EncounterPartyGridPoints;
 
 private:
 	// Combatants belonging to player party.

@@ -30,43 +30,51 @@ void ACombatGameMode::BeginPlay()
 // Creates the player and AI Combatant(s).
 void ACombatGameMode::SpawnCombatants()
 {
-	SpawnPlayerCombatant();
+	float TileSize = 100.0f;
+	float DistFromCentre = 300.0f;
 
-	// Spawn AI members of player party.
-	for (int i = 0; i < GameInstance->GetPlayerPartySize() - 1; i++)
-		SpawnAICombatant(true, i + 1);
+	// Spawn player party.
+	SpawnCombatant(false, true, 0, FVector(PlayerPartyGridPoints[0].X * TileSize + (TileSize/2.0f), PlayerPartyGridPoints[0].Y * TileSize + (TileSize / 2.0f) - DistFromCentre, 0.1f));
+	for (int i = 1; i < GameInstance->GetPlayerPartySize(); i++)
+	{
+		FVector Position = FVector(PlayerPartyGridPoints[i].X * TileSize + (TileSize / 2.0f), PlayerPartyGridPoints[i].Y * TileSize + (TileSize / 2.0f) - DistFromCentre, 0.1f);
+		SpawnCombatant(true, true, i, Position);
+	}
 
-	// Spawn encountered party.
 	for (int i = 0; i < GameInstance->GetEncounterPartySize(); i++)
-		SpawnAICombatant(false, i);
+	{
+		FVector Position = FVector(EncounterPartyGridPoints[i].X * TileSize + (TileSize / 2.0f), EncounterPartyGridPoints[i].Y * TileSize + (TileSize / 2.0f) + DistFromCentre, 0.1f);
+		SpawnCombatant(true, false, i, Position);
+	}
 }
 
-// Spawns the player Combatant.
-void ACombatGameMode::SpawnPlayerCombatant()
+// Spawns a combatant.
+void ACombatGameMode::SpawnCombatant(bool AI, bool PlayerTeam, int PartyPosition, FVector Position)
 {
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = Instigator;
-	FVector SpawnLocation = FVector::ZeroVector;
+	FVector SpawnLocation = Position;
 	FRotator SpawnRotation = FRotator::ZeroRotator;
 
-	ACombatant * PlayerCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(PlayerCombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
-	if (PlayerCombatant)
-		PlayerParty.Add(PlayerCombatant);
-}
+	ACombatant * NewCombatant = nullptr;
+	if(AI)
+		NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(AICombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
+	else
+		NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(PlayerCombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
 
-// Creates an AI Combatant for a given team.
-void ACombatGameMode::SpawnAICombatant(bool PlayerTeam, int PartyIndex)
-{
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = this;
-	SpawnParams.Instigator = Instigator;
-	FVector SpawnLocation = FVector::ZeroVector;
-	FRotator SpawnRotation = FRotator::ZeroRotator;
+	if (NewCombatant)
+	{
+		if (PlayerTeam)
+			PlayerParty.Add(NewCombatant);
+		else
+			EncounteredParty.Add(NewCombatant);
+	}
 
-	ACombatant * NewAICombatant = Cast<ACombatant>(GetWorld()->SpawnActor(AICombatantToSpawn, &SpawnLocation, &SpawnRotation, SpawnParams));
-	if (NewAICombatant)
-		EncounteredParty.Add(NewAICombatant);
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to spawn combatant."))
+	}
 }
 
 // Returns the Combatant with the highest value for a given stat.

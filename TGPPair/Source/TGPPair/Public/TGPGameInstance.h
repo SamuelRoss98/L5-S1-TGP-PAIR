@@ -25,7 +25,7 @@ public:
 
 private:
 	// Number of characters in the players party.
-	int PlayerPartySize = 1;
+	int PlayerPartySize = 3;
 
 	// Number of characters in the encountered party.
 	int EncounterPartySize = 3;
