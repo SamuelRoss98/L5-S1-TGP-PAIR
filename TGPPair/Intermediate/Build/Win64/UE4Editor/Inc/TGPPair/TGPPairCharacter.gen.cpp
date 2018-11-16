@@ -34,6 +34,14 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_totalstepCount_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_totalstepCount;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_stepCount_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_stepCount;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BaseLookUpRate_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_BaseLookUpRate;
@@ -64,6 +72,20 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 		{ "ModuleRelativePath", "TGPPairCharacter.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount_MetaData[] = {
+		{ "Category", "Statistics" },
+		{ "ModuleRelativePath", "TGPPairCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount = { UE4CodeGen_Private::EPropertyClass::Int, "totalstepCount", RF_Public|RF_Transient|RF_MarkAsNative, (EPropertyFlags)0x0010000000020005, 1, nullptr, STRUCT_OFFSET(ATGPPairCharacter, totalstepCount), METADATA_PARAMS(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount_MetaData, ARRAY_COUNT(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount_MetaData[] = {
+		{ "Category", "Statistics" },
+		{ "ModuleRelativePath", "TGPPairCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount = { UE4CodeGen_Private::EPropertyClass::Int, "stepCount", RF_Public|RF_Transient|RF_MarkAsNative, (EPropertyFlags)0x0010000000020005, 1, nullptr, STRUCT_OFFSET(ATGPPairCharacter, stepCount), METADATA_PARAMS(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount_MetaData, ARRAY_COUNT(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_BaseLookUpRate_MetaData[] = {
 		{ "Category", "Camera" },
@@ -101,6 +123,8 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom = { UE4CodeGen_Private::EPropertyClass::Object, "CameraBoom", RF_Public|RF_Transient|RF_MarkAsNative, (EPropertyFlags)0x00400000000a001d, 1, nullptr, STRUCT_OFFSET(ATGPPairCharacter, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom_MetaData, ARRAY_COUNT(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATGPPairCharacter_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_BaseLookUpRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_BaseTurnRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_FollowCamera,
@@ -129,7 +153,7 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATGPPairCharacter, 3998005244);
+	IMPLEMENT_CLASS(ATGPPairCharacter, 2559382);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ATGPPairCharacter(Z_Construct_UClass_ATGPPairCharacter, &ATGPPairCharacter::StaticClass, TEXT("/Script/TGPPair"), TEXT("ATGPPairCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ATGPPairCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -29,6 +29,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Statistics)
+		int stepCount;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Statistics)
+		int totalstepCount;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
