@@ -32,3 +32,8 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
+// Called to start this combatants turn.
+void ACombatant::StartTurn()
+{
+}
+

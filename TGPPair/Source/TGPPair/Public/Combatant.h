@@ -25,4 +25,14 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Called to start this combatants turn.
+	void StartTurn();
+
+private:
+	// True when this combatant has taken a turn this round.
+	bool bTakenTurnThisRound = false;
+
+	// True when this combatant has finished their current turn.
+	bool bCurrentTurnComplete = true;
 };

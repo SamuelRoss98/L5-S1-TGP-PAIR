@@ -23,8 +23,8 @@ void ACombatGameMode::SpawnCombatants()
 {
 	FActorSpawnParameters Params;
 
-	FVector PlayerSpawn = FVector(0.0f, 300.0f, 0.0f);
-	FVector EnemySpawn = FVector(0.0f, -300.0f, 0.0f);
+	FVector PlayerSpawn = FVector(0.0f, -300.0f, 0.0f);
+	FVector EnemySpawn = FVector(0.0f, 300.0f, 0.0f);
 	FRotator SpawnRot = FRotator::ZeroRotator;
 
 	Player = Cast<ACombatant>(GetWorld()->SpawnActor(PlayerClass, &PlayerSpawn, &SpawnRot, Params));
