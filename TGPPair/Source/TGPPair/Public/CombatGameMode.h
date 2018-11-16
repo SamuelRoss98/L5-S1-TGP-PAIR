@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "Combatant.h"
-#include "CombatGameMode.generated.h"
 
-class UTGPGameInstance;
+#include "Combatant.h"
+
+#include "CombatGameMode.generated.h"
 
 /**
  * 
@@ -18,50 +18,21 @@ class TGPPAIR_API ACombatGameMode : public AGameModeBase
 	GENERATED_BODY()
 
 public:
-	virtual void Tick(float DeltaSeconds) override;
-
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DeltaSeconds) override;
+
 private:
-	// Creates the player and AI Combatant(s).
+	// Spawns combatants in world.
 	void SpawnCombatants();
 
-	// Spawns a combatant.
-	void SpawnCombatant(bool AI, bool PlayerTeam, int PartyPosition, FVector Position);
-
-	// Returns the Combatant with the highest value for a given stat.
-	ACombatant* GetCombatantWithHighestStat(ECombatantStat StatType) const;
-
-	// Returns the Combatant with the lowest value for a given stat.
-	ACombatant* GetCombatantWithLowestStat(ECombatantStat StatType) const;
-
-public:
-	// Combatant type so spawn for the player.
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<ACombatant> PlayerCombatantToSpawn;
-
-	// Combatant type to spawn for AI.
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<ACombatant> AICombatantToSpawn;
-
-	// Grid spawn points for player party.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FIntPoint> PlayerPartyGridPoints;
-
-	// Grid spawn points for player party.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FIntPoint> EncounterPartyGridPoints;
-
 private:
-	// Combatants belonging to player party.
-	TArray<ACombatant*> PlayerParty;
+	ACombatant * Player = nullptr;
+	ACombatant * Enemy = nullptr;
 
-	// Combatants belonging to encountered party.
-	TArray<ACombatant*> EncounteredParty;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ACombatant> PlayerClass;
 
-	// TGPGameInstance.
-	UTGPGameInstance* GameInstance = nullptr;
-
-	// True while the fight is on-going.
-	bool bFightOngoing = false;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ACombatant> EnemyClass;
 };

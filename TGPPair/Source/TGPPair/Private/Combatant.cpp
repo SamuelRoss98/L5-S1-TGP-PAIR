@@ -2,6 +2,7 @@
 
 #include "Combatant.h"
 
+
 // Sets default values
 ACombatant::ACombatant()
 {
@@ -14,6 +15,7 @@ ACombatant::ACombatant()
 void ACombatant::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 // Called every frame
@@ -28,35 +30,5 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-}
-
-// Returns true if the Combatant has already used their attack this turn.
-bool ACombatant::HasAttackedThisTurn() const
-{
-	return bHasAttackedThisTurn;
-}
-
-// Flag whether a Combatant has used their attack for the turn.
-void ACombatant::SetAttackedThisTurn(bool setting)
-{
-	bHasAttackedThisTurn = setting;
-}
-
-// Returns the value of a requested stat for.
-int ACombatant::GetStat(ECombatantStat StatType) const
-{
-	switch (StatType)
-	{
-	case ECombatantStat::CombatLevel:
-		return CombatLevel;
-	case ECombatantStat::Health:
-		return CurrentHealth;
-	case ECombatantStat::Speed:
-		return BaseSpeed;
-	default:
-		return -1;
-	}
-
-	return -1;
 }
 
