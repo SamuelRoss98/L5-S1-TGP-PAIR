@@ -35,6 +35,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Statistics)
 		int totalstepCount;
 
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Statistics)
+		AActor* followActor;
+
 protected:
 
 	/** Resets HMD orientation in VR. */

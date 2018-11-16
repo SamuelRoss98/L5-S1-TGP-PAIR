@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 	TGPPAIR_API UClass* Z_Construct_UClass_ATGPPairCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_TGPPair();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 // End Cross Module References
@@ -33,6 +34,10 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_followActor_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_followActor;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_totalstepCount_MetaData[];
 #endif
@@ -72,6 +77,13 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 		{ "ModuleRelativePath", "TGPPairCharacter.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_followActor_MetaData[] = {
+		{ "Category", "Statistics" },
+		{ "ModuleRelativePath", "TGPPairCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_followActor = { UE4CodeGen_Private::EPropertyClass::Object, "followActor", RF_Public|RF_Transient|RF_MarkAsNative, (EPropertyFlags)0x0010000000020005, 1, nullptr, STRUCT_OFFSET(ATGPPairCharacter, followActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_followActor_MetaData, ARRAY_COUNT(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_followActor_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount_MetaData[] = {
 		{ "Category", "Statistics" },
@@ -123,6 +135,7 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom = { UE4CodeGen_Private::EPropertyClass::Object, "CameraBoom", RF_Public|RF_Transient|RF_MarkAsNative, (EPropertyFlags)0x00400000000a001d, 1, nullptr, STRUCT_OFFSET(ATGPPairCharacter, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom_MetaData, ARRAY_COUNT(Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_CameraBoom_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATGPPairCharacter_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_followActor,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_totalstepCount,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_stepCount,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATGPPairCharacter_Statics::NewProp_BaseLookUpRate,
@@ -153,7 +166,7 @@ void EmptyLinkFunctionForGeneratedCodeTGPPairCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ATGPPairCharacter, 2559382);
+	IMPLEMENT_CLASS(ATGPPairCharacter, 2225472539);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ATGPPairCharacter(Z_Construct_UClass_ATGPPairCharacter, &ATGPPairCharacter::StaticClass, TEXT("/Script/TGPPair"), TEXT("ATGPPairCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ATGPPairCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
