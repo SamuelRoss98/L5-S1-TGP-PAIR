@@ -39,6 +39,14 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
+// Initialize this combatant with a CharacterProperties structure.
+void ACombatant::LoadCombatant(FCharacterProperties Properties)
+{
+	CharacterName = Properties.CharacterName;
+	BaseCombatAttributes = Properties.CombatAttributes;
+	CurrentCombatAttributes = BaseCombatAttributes;
+}
+
 // Returns the interaction point Transform.
 FTransform ACombatant::GetInteractionTransform() const
 {

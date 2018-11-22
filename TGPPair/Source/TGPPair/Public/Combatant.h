@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "CombatAttribute.h"
+#include "CharacterProperties.h"
 #include "Combatant.generated.h"
 
 class USceneComponent;
@@ -29,6 +31,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Initialize this combatant with a CharacterProperties structure.
+	void LoadCombatant(FCharacterProperties Properties);
+
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
 
@@ -40,4 +45,13 @@ protected:
 	// World transform other combatants will move to to attack/interact with this combatant.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent* InteractionPoint = nullptr;
+
+	// Name of the combatant character.
+	FString CharacterName = "";
+
+	// CombatAttribute tracking the combatants current stat values. (e.g. with damage applied)
+	FCombatAttribute CurrentCombatAttributes = FCombatAttribute();
+
+	// CombatAttribute tracking the combatants base stat values. (Doesn't change).
+	FCombatAttribute BaseCombatAttributes = FCombatAttribute();
 };

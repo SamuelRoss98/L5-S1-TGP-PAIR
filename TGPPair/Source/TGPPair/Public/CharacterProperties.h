@@ -14,7 +14,8 @@ struct FCharacterProperties : public FTableRowBase
 
 public:
 	FCharacterProperties() :
-		CharacterName("")
+		CharacterName(""),
+		CombatAttributes(FCombatAttribute())
 		{}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
