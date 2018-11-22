@@ -7,6 +7,7 @@
 #include "CombatGameModeBase.generated.h"
 
 class ACombatant;
+class UDataTable;
 
 /**
  * 
@@ -43,4 +44,7 @@ private:
 
 	// Array storing all the Combatants in this fight.
 	TArray<ACombatant *> AllCombatants;
+
+	UPROPERTY(EditAnywhere)
+	UDataTable* CombatantDataTable;
 };

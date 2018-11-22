@@ -4,6 +4,7 @@
 
 #include "Combatant.h"
 #include "Engine/World.h"
+#include "Engine/DataTable.h"
 
 // Called when the game starts or when spawned
 void ACombatGameModeBase::BeginPlay()
@@ -13,7 +14,12 @@ void ACombatGameModeBase::BeginPlay()
 	// ...
 
 	SpawnCombatants();
-
+	
+	TArray<FName> Names = CombatantDataTable->GetRowNames();
+	for (int i = 0; i < Names.Num(); i++)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *(Names[i].ToString()))
+	}
 }
 
 // Called every frame
