@@ -3,8 +3,9 @@
 #pragma once
 
 #include "Engine/DataTable.h"
+#include "CombatAttribute.h"
 
-#include "CharacterProperties.generated.h" // this must be last include in the file
+#include "CharacterProperties.generated.h"
 
 USTRUCT(BlueprintType)
 struct FCharacterProperties : public FTableRowBase
@@ -13,17 +14,12 @@ struct FCharacterProperties : public FTableRowBase
 
 public:
 	FCharacterProperties() :
-		XPtoLvl(0),
-		AdditionalHP(0)
+		CharacterName("")
 		{}
 
-	/** The 'Name' column is the same as the XP Level */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString CharacterName;
 
-	/** XP to get to the given level from the previous level */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LevelUp)
-	int32 XPtoLvl;
-
-	/** Extra HitPoints gained at this level */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LevelUp)
-	int32 AdditionalHP;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FCombatAttribute CombatAttributes;
 };
