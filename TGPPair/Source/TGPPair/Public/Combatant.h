@@ -6,6 +6,9 @@
 #include "GameFramework/Pawn.h"
 #include "Combatant.generated.h"
 
+class USceneComponent;
+class UStaticMeshComponent;
+
 UCLASS()
 class TGPPAIR_API ACombatant : public APawn
 {
@@ -25,4 +28,16 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Returns the interaction point Transform.
+	FTransform GetInteractionTransform() const;
+
+protected:
+	// Mesh for the combatant, root component.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* Mesh = nullptr;
+
+	// World transform other combatants will move to to attack/interact with this combatant.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	USceneComponent* InteractionPoint = nullptr;
 };

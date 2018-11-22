@@ -2,6 +2,8 @@
 
 #include "Combatant.h"
 
+#include "Components/SceneComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ACombatant::ACombatant()
@@ -9,6 +11,11 @@ ACombatant::ACombatant()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("CombatantStaticMesh");
+	InteractionPoint = CreateDefaultSubobject<USceneComponent>("InteractionPoint");
+
+	RootComponent = Mesh;
+	InteractionPoint->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -30,5 +37,11 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+// Returns the interaction point Transform.
+FTransform ACombatant::GetInteractionTransform() const
+{
+	return InteractionPoint->GetComponentTransform();
 }
 
