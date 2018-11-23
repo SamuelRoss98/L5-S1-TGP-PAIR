@@ -32,6 +32,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Call to alert the game mode that a turn is finished.
+	void TurnFinished();
+
 private:
 	// Spawns the combatants.
 	void SpawnCombatants();

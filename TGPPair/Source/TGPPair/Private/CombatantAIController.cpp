@@ -4,24 +4,15 @@
 
 #include "Combatant.h"
 
-// Called every frame
-void ACombatantAIController::Tick(float DeltaTime)
-{
-
-}
-
 // Makes a combat decision for the combatant.
 void ACombatantAIController::CombatDecision(TArray<ACombatant*> AllCombatants)
 {
-	bOurTurn = true;
-
 	ACombatant* ControlledCombatant = Cast<ACombatant>(GetPawn());
-	
-	if (ControlledCombatant)
-	{
-		if (ControlledCombatant == AllCombatants[0])
-			ControlledCombatant->AttackCombatant(AllCombatants[1]);
-		else
-			ControlledCombatant->AttackCombatant(AllCombatants[0]);
-	}
+
+	ACombatant * CombatantToAttack = AllCombatants[FMath::RandRange(0, AllCombatants.Num() - 1)];
+	while (CombatantToAttack == ControlledCombatant)
+		CombatantToAttack = AllCombatants[FMath::RandRange(0, AllCombatants.Num() - 1)];
+
+	UE_LOG(LogTemp, Warning, TEXT("Attack decision"))
+	ControlledCombatant->AttackCombatant(CombatantToAttack);
 }

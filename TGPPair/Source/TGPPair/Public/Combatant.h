@@ -117,4 +117,10 @@ private:
 
 	// True while the combatant is taking its turn.
 	bool bTurnInProgress = false;
+
+	// Original position of the combatant.
+	FTransform OriginalTransform;
+
+	float WaitTime = 3.0f;
+	float WaitTimer = 0.0f;
 };

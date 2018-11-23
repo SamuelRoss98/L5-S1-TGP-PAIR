@@ -8,6 +8,7 @@
 
 #include "CombatantAIController.h"
 #include "CombatantPlayerController.h"
+#include "CombatGameModeBase.h"
 
 // Sets default values
 ACombatant::ACombatant()
@@ -26,13 +27,23 @@ ACombatant::ACombatant()
 void ACombatant::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	OriginalTransform = GetActorTransform();
 }
 
 // Called every frame
 void ACombatant::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bTurnInProgress)
+	{
+		WaitTimer += DeltaTime;
+		if (WaitTimer >= WaitTime)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Timer expired"))
+			EndTurn();
+		}
+	}
 
 }
 
@@ -60,6 +71,7 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 // Starts this combatants turn.
 void ACombatant::StartTurn(TArray<ACombatant*> AllCombatants)
 {
+	bTurnInProgress = true;
 	UE_LOG(LogTemp, Warning, TEXT("%s started their turn."), *(CharacterName))
 	CombatantController->CombatDecision(AllCombatants);
 }
@@ -69,7 +81,15 @@ void ACombatant::EndTurn()
 {
 	bActedThisTurn = true;
 	bTurnInProgress = false;
+	WaitTimer = 0.0f;
 	UE_LOG(LogTemp, Warning, TEXT("%s ended their turn."), *(CharacterName))
+
+	SetActorLocation(OriginalTransform.GetLocation());
+	SetActorRotation(OriginalTransform.GetRotation());
+
+	ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (CombatGameMode)
+		CombatGameMode->TurnFinished();
 }
 
 // Returns the interaction point Transform.

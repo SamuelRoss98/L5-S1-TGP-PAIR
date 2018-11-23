@@ -32,6 +32,12 @@ void ACombatGameModeBase::Tick(float DeltaSeconds)
 	}
 }
 
+// Call to alert the game mode that a turn is finished.
+void ACombatGameModeBase::TurnFinished()
+{
+	bActionInProgress = false;
+}
+
 // Spawns the combatants.
 void ACombatGameModeBase::SpawnCombatants()
 {
