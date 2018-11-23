@@ -2,6 +2,10 @@
 
 #include "CombatantPlayerController.h"
 
+void ACombatantPlayerController::TestSpeak()
+{
+	UE_LOG(LogTemp, Warning, TEXT("I am a player controller"))
+}
 
 
 

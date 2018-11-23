@@ -4,17 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+
+#include "CombatantDecisionMaking.h"
+
 #include "CombatantAIController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class TGPPAIR_API ACombatantAIController : public AAIController
+class TGPPAIR_API ACombatantAIController : public AAIController, public ICombatantDecisionMaking
 {
 	GENERATED_BODY()
 	
-	
-	
-	
+public:
+	void TestSpeak() override;
 };

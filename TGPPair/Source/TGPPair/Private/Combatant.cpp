@@ -4,6 +4,10 @@
 
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Engine/World.h"
+
+#include "CombatantAIController.h"
+#include "CombatantPlayerController.h"
 
 // Sets default values
 ACombatant::ACombatant()
@@ -40,11 +44,13 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 }
 
 // Initialize this combatant with a CharacterProperties structure.
-void ACombatant::LoadCombatant(FCharacterProperties Properties)
+void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer)
 {
 	CharacterName = Properties.CharacterName;
 	BaseCombatAttributes = Properties.CombatAttributes;
 	CurrentCombatAttributes = BaseCombatAttributes;
+
+	SpawnCombatantController(bPlayer);
 
 	UE_LOG(LogTemp, Log, TEXT("Combatant loaded: %s"), *(Properties.CharacterName))
 }
@@ -53,5 +59,22 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties)
 FTransform ACombatant::GetInteractionTransform() const
 {
 	return InteractionPoint->GetComponentTransform();
+}
+
+// Spawn the controller for this Combatant.
+void ACombatant::SpawnCombatantController(bool bPlayer)
+{
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Instigator = Instigator;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	SpawnParams.OverrideLevel = GetLevel();
+
+	if(bPlayer)
+		CombatantController = GetWorld()->SpawnActor<ICombatantDecisionMaking>(CombatantPlayerControllerClass, GetActorLocation(), GetActorRotation(), SpawnParams);
+	else
+		CombatantController = GetWorld()->SpawnActor<ICombatantDecisionMaking>(CombatantAIControllerClass, GetActorLocation(), GetActorRotation(), SpawnParams);
+
+	if (CombatantController != nullptr)
+		Cast<AController>(CombatantController)->Possess(this);
 }
 

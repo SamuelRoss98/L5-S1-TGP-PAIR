@@ -2,6 +2,8 @@
 
 #include "CombatantAIController.h"
 
-
-
+void ACombatantAIController::TestSpeak()
+{
+	UE_LOG(LogTemp, Warning, TEXT("I am an AI controller"))
+}
 

@@ -4,17 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+
+#include "CombatantDecisionMaking.h"
+
 #include "CombatantPlayerController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class TGPPAIR_API ACombatantPlayerController : public APlayerController
+class TGPPAIR_API ACombatantPlayerController : public APlayerController, public ICombatantDecisionMaking
 {
 	GENERATED_BODY()
 	
-	
-	
-	
+public:
+	void TestSpeak() override;
 };
