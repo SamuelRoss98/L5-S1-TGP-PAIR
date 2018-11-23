@@ -41,6 +41,9 @@ private:
 	// Returns true if the round is complete.
 	bool IsRoundComplete() const;
 
+	// Return the next combatant to act based on their speed.
+	ACombatant * GetNextToAct() const;
+
 private:
 	// Spawn points temporarily hardcoded.
 	FVector SpawnPointA = FVector(250.0f, 550.0f, 50.0f);

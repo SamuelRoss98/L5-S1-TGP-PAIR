@@ -90,3 +90,25 @@ bool ACombatGameModeBase::IsRoundComplete() const
 	return true;
 }
 
+// Return the next combatant to act based on their speed.
+ACombatant * ACombatGameModeBase::GetNextToAct() const
+{
+	int HighestSpeed = -999;
+	ACombatant * NextToAct = nullptr;
+
+	for (ACombatant* Combatant : AllCombatants)
+	{
+		if (!Combatant->HasActedThisTurn())
+		{
+			int Speed = Combatant->GetCurrentCombatAttributes().Speed;
+			if (Speed > HighestSpeed)
+			{
+				HighestSpeed = Speed;
+				NextToAct = Combatant;
+			}
+		}
+	}
+
+	return NextToAct;
+}
+

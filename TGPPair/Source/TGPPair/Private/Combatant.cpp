@@ -63,6 +63,18 @@ FTransform ACombatant::GetInteractionTransform() const
 	return InteractionPoint->GetComponentTransform();
 }
 
+// Returns the combatants current combat attributes.
+FCombatAttribute ACombatant::GetCurrentCombatAttributes() const
+{
+	return CurrentCombatAttributes;
+}
+
+// Returns the combatants base combat attributes.
+FCombatAttribute ACombatant::GetBaseCombatAttributes() const
+{
+	return BaseCombatAttributes;
+}
+
 // Returns true if the combatant has already acted this turn.
 bool ACombatant::HasActedThisTurn() const
 {

@@ -40,6 +40,12 @@ public:
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
 
+	// Returns the combatants current combat attributes.
+	FCombatAttribute GetCurrentCombatAttributes() const;
+
+	// Returns the combatants base combat attributes.
+	FCombatAttribute GetBaseCombatAttributes() const;
+
 	// Returns true if the combatant has already acted this turn.
 	bool HasActedThisTurn() const;
 
