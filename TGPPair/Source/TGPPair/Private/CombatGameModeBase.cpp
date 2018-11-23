@@ -43,22 +43,21 @@ void ACombatGameModeBase::SpawnCombatants()
 	TArray<FCharacterProperties*> OutRows;
 	CombatantDataTable->GetAllRows<FCharacterProperties>("GENERAL", OutRows);
 
-	SpawnCombatant(SpawnPointA, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointB, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, true);		// Player
-	SpawnCombatant(SpawnPointC, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointD, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointE, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointF, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointA, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointB, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, true);		// Player
+	SpawnCombatant(SpawnPointC, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointD, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointE, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointF, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
 }
 
-void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterProperties Character, bool bFriendly, bool bPlayer)
+void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotation, FCharacterProperties Character, bool bFriendly, bool bPlayer)
 {
 	ACombatant * NewCombatant = nullptr;
 	FActorSpawnParameters SpawnParams;
-	FRotator SpawnRot = FRotator::ZeroRotator;
 
 	// Spawn.
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPoint, &SpawnRot, SpawnParams));
+	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPoint, &SpawnRotation, SpawnParams));
 	if (NewCombatant)
 	{
 		NewCombatant->LoadCombatant(Character, bPlayer, bFriendly);

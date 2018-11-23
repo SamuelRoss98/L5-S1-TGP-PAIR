@@ -18,5 +18,6 @@ class TGPPAIR_API ACombatantPlayerController : public APlayerController, public 
 	GENERATED_BODY()
 	
 public:
-	void TestSpeak() override;
+	// Makes a combat decision for the combatant.
+	virtual void CombatDecision(TArray<ACombatant*> AllCombatants) override;
 };

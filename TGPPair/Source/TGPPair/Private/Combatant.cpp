@@ -61,12 +61,27 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 void ACombatant::StartTurn(TArray<ACombatant*> AllCombatants)
 {
 	UE_LOG(LogTemp, Warning, TEXT("%s started their turn."), *(CharacterName))
+	CombatantController->CombatDecision(AllCombatants);
+}
+
+// Ends this combants turn.
+void ACombatant::EndTurn()
+{
+	bActedThisTurn = true;
+	bTurnInProgress = false;
+	UE_LOG(LogTemp, Warning, TEXT("%s ended their turn."), *(CharacterName))
 }
 
 // Returns the interaction point Transform.
 FTransform ACombatant::GetInteractionTransform() const
 {
 	return InteractionPoint->GetComponentTransform();
+}
+
+// Return the character name of this combatant.
+FString ACombatant::GetCharacterName() const
+{
+	return CharacterName;
 }
 
 // Returns the combatants current combat attributes.
@@ -97,6 +112,14 @@ bool ACombatant::IsOnPlayerTeam() const
 bool ACombatant::IsTurnInProgress() const
 {
 	return bTurnInProgress;
+}
+
+// Attacks a combatant.
+void ACombatant::AttackCombatant(ACombatant * CombatantToAttack)
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s attacks %s"), *(CharacterName), *(CombatantToAttack->GetCharacterName()))
+	SetActorLocation(CombatantToAttack->GetInteractionTransform().GetLocation());
+	SetActorRotation(CombatantToAttack->GetInteractionTransform().GetRotation());
 }
 
 // Spawn the controller for this Combatant.

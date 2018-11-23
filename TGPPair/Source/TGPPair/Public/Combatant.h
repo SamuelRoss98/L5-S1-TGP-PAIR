@@ -14,6 +14,13 @@ class ICombatantDecisionMaking;
 class ACombatantAIController;
 class ACombatantPlayerController;
 
+UENUM(BlueprintType)
+enum class ECombatantActions : uint8 
+{
+	Attack	 	UMETA(DisplayName = "Attack"),
+	UseItem 	UMETA(DisplayName = "Item")
+};
+
 UCLASS()
 class TGPPAIR_API ACombatant : public APawn
 {
@@ -40,8 +47,14 @@ public:
 	// Starts this combatants turn.
 	void StartTurn(TArray<ACombatant*> AllCombatants);
 
+	// Ends this combants turn.
+	void EndTurn();
+
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
+
+	// Return the character name of this combatant.
+	FString GetCharacterName() const;
 
 	// Returns the combatants current combat attributes.
 	FCombatAttribute GetCurrentCombatAttributes() const;
@@ -57,6 +70,10 @@ public:
 
 	// Returns true while this combatant is taking its turn.
 	bool IsTurnInProgress() const;
+
+public:
+	// Attacks a combatant.
+	void AttackCombatant(ACombatant * CombatantToAttack);
 
 private:
 	// Spawn the controller for this Combatant.

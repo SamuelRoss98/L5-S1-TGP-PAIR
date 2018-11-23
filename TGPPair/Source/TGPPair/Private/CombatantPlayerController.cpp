@@ -2,10 +2,9 @@
 
 #include "CombatantPlayerController.h"
 
-void ACombatantPlayerController::TestSpeak()
+// Makes a combat decision for the combatant.
+void ACombatantPlayerController::CombatDecision(TArray<ACombatant*> AllCombatants) 
 {
-	UE_LOG(LogTemp, Warning, TEXT("I am a player controller"))
+
 }
-
-
 

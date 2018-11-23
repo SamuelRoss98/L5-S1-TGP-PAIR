@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "CombatantDecisionMaking.generated.h"
 
+class ACombatant;
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UCombatantDecisionMaking : public UInterface
@@ -22,5 +24,6 @@ class TGPPAIR_API ICombatantDecisionMaking
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void TestSpeak() = 0;	
+	// Makes a combat decision for the combatant.
+	virtual void CombatDecision(TArray<ACombatant*> AllCombatants) = 0;
 };
