@@ -41,7 +41,13 @@ public:
 	FTransform GetInteractionTransform() const;
 
 	// Returns true if the combatant has already acted this turn.
-	bool GetActedThisTurn() const;
+	bool HasActedThisTurn() const;
+
+	// Returns true if the combatant is on the players team.
+	bool IsOnPlayerTeam() const;
+
+	// Returns true while this combatant is taking its turn.
+	bool IsTurnInProgress() const;
 
 private:
 	// Spawn the controller for this Combatant.
@@ -82,4 +88,7 @@ private:
 
 	// True if combatant is on the players team.
 	bool bPlayerTeam = false;
+
+	// True while the combatant is taking its turn.
+	bool bTurnInProgress = false;
 };

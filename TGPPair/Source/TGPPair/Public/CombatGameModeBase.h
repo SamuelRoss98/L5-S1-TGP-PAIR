@@ -38,6 +38,9 @@ private:
 	// Starts the turn of the next combatant.
 	void StartNextTurn();
 
+	// Returns true if the round is complete.
+	bool IsRoundComplete() const;
+
 private:
 	// Spawn points temporarily hardcoded.
 	FVector SpawnPointA = FVector(250.0f, 550.0f, 50.0f);

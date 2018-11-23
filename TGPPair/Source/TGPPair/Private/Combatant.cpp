@@ -63,9 +63,22 @@ FTransform ACombatant::GetInteractionTransform() const
 	return InteractionPoint->GetComponentTransform();
 }
 
-bool ACombatant::GetActedThisTurn() const
+// Returns true if the combatant has already acted this turn.
+bool ACombatant::HasActedThisTurn() const
 {
 	return bActedThisTurn;
+}
+
+// Returns true if the combatant is on the players team.
+bool ACombatant::IsOnPlayerTeam() const
+{
+	return bPlayerTeam;
+}
+
+// Returns true while this combatant is taking its turn.
+bool ACombatant::IsTurnInProgress() const
+{
+	return bTurnInProgress;
 }
 
 // Spawn the controller for this Combatant.

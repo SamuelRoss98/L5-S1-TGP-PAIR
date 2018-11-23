@@ -69,6 +69,24 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterPropertie
 // Starts the turn of the next combatant.
 void ACombatGameModeBase::StartNextTurn()
 {
-	bActionInProgress = true;
+	if (!IsRoundComplete())
+	{
+
+	}
+
+	else
+	{
+		// TODO: Start new round.
+	}
+}
+
+// Returns true if the round is complete.
+bool ACombatGameModeBase::IsRoundComplete() const
+{
+	for (ACombatant* Combatant : AllCombatants)
+		if (!Combatant->HasActedThisTurn())
+			return false;
+
+	return true;
 }
 
