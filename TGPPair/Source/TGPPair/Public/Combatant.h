@@ -40,6 +40,9 @@ public:
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
 
+	// Returns true if the combatant has already acted this turn.
+	bool GetActedThisTurn() const;
+
 private:
 	// Spawn the controller for this Combatant.
 	void SpawnCombatantController(bool bPlayer);
@@ -73,4 +76,7 @@ private:
 
 	// CombatAttribute tracking the combatants base stat values. (Doesn't change).
 	FCombatAttribute BaseCombatAttributes = FCombatAttribute();
+
+	// True if the combatant has acted this turn.
+	bool bActedThisTurn = false;
 };

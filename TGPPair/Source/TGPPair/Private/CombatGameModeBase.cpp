@@ -21,6 +21,10 @@ void ACombatGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
+	if (!bActionInProgress)
+	{
+		StartNextTurn();
+	}
 }
 
 // Spawns the combatants.
@@ -34,7 +38,6 @@ void ACombatGameModeBase::SpawnCombatants()
 	TArray<FCharacterProperties*> OutRows;
 	CombatantDataTable->GetAllRows<FCharacterProperties>("GENERAL", OutRows);
 
-	
 	SpawnCombatant(SpawnPointA, *OutRows[0], true, false);		// Friendly AI
 	SpawnCombatant(SpawnPointB, *OutRows[0], true, true);		// Player
 	SpawnCombatant(SpawnPointC, *OutRows[0], true, false);		// Friendly AI
@@ -61,5 +64,11 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterPropertie
 	{
 		UE_LOG(LogTemp, Error, TEXT("Failed to load combatant."))
 	}
+}
+
+// Starts the turn of the next combatant.
+void ACombatGameModeBase::StartNextTurn()
+{
+	bActionInProgress = true;
 }
 

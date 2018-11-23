@@ -61,6 +61,11 @@ FTransform ACombatant::GetInteractionTransform() const
 	return InteractionPoint->GetComponentTransform();
 }
 
+bool ACombatant::GetActedThisTurn() const
+{
+	return bActedThisTurn;
+}
+
 // Spawn the controller for this Combatant.
 void ACombatant::SpawnCombatantController(bool bPlayer)
 {

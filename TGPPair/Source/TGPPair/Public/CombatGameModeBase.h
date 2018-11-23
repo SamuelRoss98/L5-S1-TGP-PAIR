@@ -35,6 +35,9 @@ private:
 	// Spawns a single combatant.
 	void SpawnCombatant(FVector SpawnPoint, FCharacterProperties Character, bool bFriendly, bool bPlayer);
 
+	// Starts the turn of the next combatant.
+	void StartNextTurn();
+
 private:
 	// Spawn points temporarily hardcoded.
 	FVector SpawnPointA = FVector(250.0f, 550.0f, 50.0f);
@@ -53,4 +56,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UDataTable* CombatantDataTable;
+
+	// True if a combatant is currently acting.
+	bool bActionInProgress = false;
 };
