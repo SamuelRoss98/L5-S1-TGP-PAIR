@@ -45,6 +45,8 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties)
 	CharacterName = Properties.CharacterName;
 	BaseCombatAttributes = Properties.CombatAttributes;
 	CurrentCombatAttributes = BaseCombatAttributes;
+
+	UE_LOG(LogTemp, Log, TEXT("Combatant loaded: %s"), *(Properties.CharacterName))
 }
 
 // Returns the interaction point Transform.

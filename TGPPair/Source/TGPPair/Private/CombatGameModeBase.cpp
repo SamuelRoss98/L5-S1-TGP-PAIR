@@ -14,12 +14,6 @@ void ACombatGameModeBase::BeginPlay()
 	// ...
 
 	SpawnCombatants();
-	
-	TArray<FName> Names = CombatantDataTable->GetRowNames();
-	for (int i = 0; i < Names.Num(); i++)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *(Names[i].ToString()))
-	}
 }
 
 // Called every frame
@@ -36,24 +30,36 @@ void ACombatGameModeBase::SpawnCombatants()
 	FRotator SpawnRot = FRotator::ZeroRotator;
 
 	ACombatant * NewCombatant = nullptr;
+
+	TArray<FCharacterProperties*> OutRows;
+	CombatantDataTable->GetAllRows<FCharacterProperties>("GENERAL", OutRows);
+
 	
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointA, &SpawnRot, SpawnParams));
+	SpawnCombatant(SpawnPointA, *OutRows[0], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointB, *OutRows[0], true, true);		// Player
+	SpawnCombatant(SpawnPointC, *OutRows[0], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointD, *OutRows[0], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointE, *OutRows[0], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointF, *OutRows[0], false, false);		// Enemy AI
+}
+
+void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterProperties Character, bool bFriendly, bool bPlayer)
+{
+	ACombatant * NewCombatant = nullptr;
+	FActorSpawnParameters SpawnParams;
+	FRotator SpawnRot = FRotator::ZeroRotator;
+
+	// Spawn.
+	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPoint, &SpawnRot, SpawnParams));
 	if (NewCombatant)
+	{
+		NewCombatant->LoadCombatant(Character);
 		AllCombatants.Add(NewCombatant);
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointB, &SpawnRot, SpawnParams));
-	if (NewCombatant)
-		AllCombatants.Add(NewCombatant);
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointC, &SpawnRot, SpawnParams));
-	if (NewCombatant)
-		AllCombatants.Add(NewCombatant);
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointD, &SpawnRot, SpawnParams));
-	if (NewCombatant)
-		AllCombatants.Add(NewCombatant);
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointE, &SpawnRot, SpawnParams));
-	if (NewCombatant)
-		AllCombatants.Add(NewCombatant);
-	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPointF, &SpawnRot, SpawnParams));
-	if (NewCombatant)
-		AllCombatants.Add(NewCombatant);
+	}
+
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to load combatant."))
+	}
 }
 

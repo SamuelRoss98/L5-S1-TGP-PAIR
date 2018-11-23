@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+
+#include "CharacterProperties.h"
+
 #include "CombatGameModeBase.generated.h"
 
 class ACombatant;
@@ -28,6 +31,9 @@ public:
 private:
 	// Spawns the combatants.
 	void SpawnCombatants();
+
+	// Spawns a single combatant.
+	void SpawnCombatant(FVector SpawnPoint, FCharacterProperties Character, bool bFriendly, bool bPlayer);
 
 private:
 	// Spawn points temporarily hardcoded.
