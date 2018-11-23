@@ -37,6 +37,9 @@ public:
 	// Initialize this combatant with a CharacterProperties structure.
 	void LoadCombatant(FCharacterProperties Properties, bool bPlayer, bool bFriendly);
 
+	// Starts this combatants turn.
+	void StartTurn(TArray<ACombatant*> AllCombatants);
+
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
 

@@ -20,6 +20,10 @@ class TGPPAIR_API ACombatGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
+public:
+	// Sets default values for this actor's properties
+	ACombatGameModeBase();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

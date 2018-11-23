@@ -6,6 +6,11 @@
 #include "Engine/World.h"
 #include "Engine/DataTable.h"
 
+ACombatGameModeBase::ACombatGameModeBase()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
+
 // Called when the game starts or when spawned
 void ACombatGameModeBase::BeginPlay()
 {
@@ -38,12 +43,12 @@ void ACombatGameModeBase::SpawnCombatants()
 	TArray<FCharacterProperties*> OutRows;
 	CombatantDataTable->GetAllRows<FCharacterProperties>("GENERAL", OutRows);
 
-	SpawnCombatant(SpawnPointA, *OutRows[0], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointB, *OutRows[0], true, true);		// Player
-	SpawnCombatant(SpawnPointC, *OutRows[0], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointD, *OutRows[0], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointE, *OutRows[0], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointF, *OutRows[0], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointA, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointB, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, true);		// Player
+	SpawnCombatant(SpawnPointC, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
+	SpawnCombatant(SpawnPointD, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointE, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointF, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
 }
 
 void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterProperties Character, bool bFriendly, bool bPlayer)
@@ -71,7 +76,8 @@ void ACombatGameModeBase::StartNextTurn()
 {
 	if (!IsRoundComplete())
 	{
-
+		GetNextToAct()->StartTurn(AllCombatants);
+		bActionInProgress = true;
 	}
 
 	else

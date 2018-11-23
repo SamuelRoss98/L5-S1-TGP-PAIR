@@ -57,6 +57,12 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 	UE_LOG(LogTemp, Log, TEXT("%s combatant loaded: %s"), *(TeamStr), *(Properties.CharacterName))
 }
 
+// Starts this combatants turn.
+void ACombatant::StartTurn(TArray<ACombatant*> AllCombatants)
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s started their turn."), *(CharacterName))
+}
+
 // Returns the interaction point Transform.
 FTransform ACombatant::GetInteractionTransform() const
 {
