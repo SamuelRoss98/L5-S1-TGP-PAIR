@@ -35,7 +35,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Initialize this combatant with a CharacterProperties structure.
-	void LoadCombatant(FCharacterProperties Properties, bool bPlayer);
+	void LoadCombatant(FCharacterProperties Properties, bool bPlayer, bool bFriendly);
 
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
@@ -79,4 +79,7 @@ private:
 
 	// True if the combatant has acted this turn.
 	bool bActedThisTurn = false;
+
+	// True if combatant is on the players team.
+	bool bPlayerTeam = false;
 };

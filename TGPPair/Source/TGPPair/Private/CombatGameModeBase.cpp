@@ -56,7 +56,7 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FCharacterPropertie
 	NewCombatant = Cast<ACombatant>(GetWorld()->SpawnActor(CombatantClass, &SpawnPoint, &SpawnRot, SpawnParams));
 	if (NewCombatant)
 	{
-		NewCombatant->LoadCombatant(Character, bPlayer);
+		NewCombatant->LoadCombatant(Character, bPlayer, bFriendly);
 		AllCombatants.Add(NewCombatant);
 	}
 

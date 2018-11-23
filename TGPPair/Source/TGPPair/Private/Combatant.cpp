@@ -44,15 +44,17 @@ void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 }
 
 // Initialize this combatant with a CharacterProperties structure.
-void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer)
+void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bool bFriendly)
 {
 	CharacterName = Properties.CharacterName;
 	BaseCombatAttributes = Properties.CombatAttributes;
 	CurrentCombatAttributes = BaseCombatAttributes;
 
 	SpawnCombatantController(bPlayer);
+	bPlayerTeam = bFriendly;
 
-	UE_LOG(LogTemp, Log, TEXT("Combatant loaded: %s"), *(Properties.CharacterName))
+	FString TeamStr = (bPlayerTeam) ? "Friendly" : "Enemy";
+	UE_LOG(LogTemp, Log, TEXT("%s combatant loaded: %s"), *(TeamStr), *(Properties.CharacterName))
 }
 
 // Returns the interaction point Transform.
