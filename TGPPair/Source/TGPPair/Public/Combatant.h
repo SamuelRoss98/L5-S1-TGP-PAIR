@@ -14,12 +14,7 @@ class ICombatantDecisionMaking;
 class ACombatantAIController;
 class ACombatantPlayerController;
 
-UENUM(BlueprintType)
-enum class ECombatantActions : uint8 
-{
-	Attack	 	UMETA(DisplayName = "Attack"),
-	UseItem 	UMETA(DisplayName = "Item")
-};
+
 
 UCLASS()
 class TGPPAIR_API ACombatant : public APawn
