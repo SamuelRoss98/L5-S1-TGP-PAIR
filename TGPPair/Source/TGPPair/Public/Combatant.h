@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "CombatAttribute.h"
 #include "CharacterProperties.h"
+#include "CombatantAction.h"
 #include "Combatant.generated.h"
 
 class USceneComponent;
@@ -120,4 +121,14 @@ private:
 
 	float WaitTime = 3.0f;
 	float WaitTimer = 0.0f;
+
+private:
+	FCombatantAction TurnAction;
+
+public:
+	// Returns the action this combatant has decided to carry out this turn.
+	const FCombatantAction GetTurnAction() const;
+
+	// Set the action this combatant next carry out.
+	void SetTurnAction(const FCombatantAction Action);
 };

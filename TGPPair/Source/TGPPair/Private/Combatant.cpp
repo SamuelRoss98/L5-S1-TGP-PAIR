@@ -159,3 +159,15 @@ void ACombatant::SpawnCombatantController(bool bPlayer)
 		Cast<AController>(CombatantController)->Possess(this);
 }
 
+// Returns the action this combatant has decided to carry out this turn.
+const FCombatantAction ACombatant::GetTurnAction() const
+{
+	return TurnAction;
+}
+
+// Set the action this combatant next carry out.
+void ACombatant::SetTurnAction(const FCombatantAction Action)
+{
+	TurnAction = Action;
+}
+

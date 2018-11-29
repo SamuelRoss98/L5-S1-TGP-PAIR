@@ -20,4 +20,14 @@ class TGPPAIR_API ACombatantPlayerController : public APlayerController, public 
 public:
 	// Makes a combat decision for the combatant.
 	virtual void CombatDecision(TArray<ACombatant*> AllCombatants) override;
+
+	// Called by the gamemode to start the players action selection process each turn.
+	void StartCombatDecisions();
+
+	// Blueprint implementable event for combat decisions.
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartCombatDecisionEvent();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	bool IsDecisionFinished();
 };

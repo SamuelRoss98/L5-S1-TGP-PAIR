@@ -5,6 +5,7 @@
 #include "Combatant.h"
 #include "Engine/World.h"
 #include "Engine/DataTable.h"
+#include "CombatantPlayerController.h"
 
 ACombatGameModeBase::ACombatGameModeBase()
 {
@@ -18,6 +19,12 @@ void ACombatGameModeBase::BeginPlay()
 
 	// ...
 
+	CombatantPlayerController = Cast<ACombatantPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!CombatantPlayerController)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Gamemode failed to find a combatant player controller"))
+	}
+
 	SpawnCombatants();
 }
 
@@ -26,10 +33,16 @@ void ACombatGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	if (!bActionInProgress)
+	if (bPlayerDecisionComplete)
 	{
-		StartNextTurn();
+		// Start doing turns.
+		UE_LOG(LogTemp, Warning, TEXT("TURN"))
 	}
+
+	// Check if the player is done deciding.
+	else
+		if (CombatantPlayerController)
+			bPlayerDecisionComplete = CombatantPlayerController->IsDecisionFinished();
 }
 
 // Call to alert the game mode that a turn is finished.
@@ -79,16 +92,21 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotat
 // Starts the turn of the next combatant.
 void ACombatGameModeBase::StartNextTurn()
 {
-	if (!IsRoundComplete())
-	{
-		GetNextToAct()->StartTurn(AllCombatants);
-		bActionInProgress = true;
-	}
+	if (CombatantPlayerController)
+		CombatantPlayerController->StartCombatDecisions();
 
-	else
-	{
-		// TODO: Start new round.
-	}
+	bPlayerDecisionComplete = false;
+
+	//if (!IsRoundComplete())
+	//{
+	//	GetNextToAct()->StartTurn(AllCombatants);
+	//	bActionInProgress = true;
+	//}
+
+	//else
+	//{
+	//	// TODO: Start new round.
+	//}
 }
 
 // Returns true if the round is complete.

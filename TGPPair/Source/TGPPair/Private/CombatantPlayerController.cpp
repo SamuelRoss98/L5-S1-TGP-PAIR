@@ -8,3 +8,8 @@ void ACombatantPlayerController::CombatDecision(TArray<ACombatant*> AllCombatant
 
 }
 
+void ACombatantPlayerController::StartCombatDecisions()
+{
+	StartCombatDecisionEvent();
+}
+

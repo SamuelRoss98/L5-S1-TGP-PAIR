@@ -11,6 +11,7 @@
 
 class ACombatant;
 class UDataTable;
+class ACombatantPlayerController;
 
 /**
  * 
@@ -73,4 +74,10 @@ private:
 
 	// True if a combatant is currently acting.
 	bool bActionInProgress = false;
+
+	// Player controller for the friendly team.
+	ACombatantPlayerController * CombatantPlayerController = nullptr;
+
+	// Has the player decided their actions for the turn.
+	bool bPlayerDecisionComplete = false;
 };

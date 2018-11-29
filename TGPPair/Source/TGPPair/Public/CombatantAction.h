@@ -7,6 +7,7 @@
 UENUM(BlueprintType)
 enum class ECombatantActionType : uint8
 {
+	NullAction UMETA(DisplayName = "None"),
 	Attack	 	UMETA(DisplayName = "Attack"),
 	Magic 		UMETA(DisplayName = "Magic"),
 	Item		UMETA(DisplayName = "Item"),
@@ -20,7 +21,7 @@ struct FCombatantAction
 
 public:
 	FCombatantAction() :
-		ActionType(ECombatantActionType::Attack),
+		ActionType(ECombatantActionType::NullAction),
 		bActOnOwnTeam(false),
 		TargetIndex(0)
 		{};
