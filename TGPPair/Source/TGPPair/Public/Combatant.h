@@ -54,9 +54,11 @@ public:
 	FTransform GetInteractionTransform() const;
 
 	// Return the character name of this combatant.
+	UFUNCTION(BlueprintPure)
 	FString GetCharacterName() const;
 
 	// Returns the combatants current combat attributes.
+	UFUNCTION(BlueprintPure)
 	FCombatAttribute GetCurrentCombatAttributes() const;
 
 	// Returns the combatants base combat attributes.
