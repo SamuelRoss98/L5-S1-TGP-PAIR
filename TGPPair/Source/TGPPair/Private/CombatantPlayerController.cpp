@@ -3,9 +3,9 @@
 #include "CombatantPlayerController.h"
 
 // Makes a combat decision for the combatant.
-void ACombatantPlayerController::CombatDecision(TArray<ACombatant*> AllCombatants) 
+FCombatantAction ACombatantPlayerController::GetAction(TArray<ACombatant*> AllCombatants) 
 {
-
+	return GetAction();
 }
 
 void ACombatantPlayerController::StartCombatDecisions()

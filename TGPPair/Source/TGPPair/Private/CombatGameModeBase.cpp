@@ -101,7 +101,8 @@ void ACombatGameModeBase::EndRound()
 	bPlayerDecisionComplete = false;
 
 	// Next round starts immediately.
-	StartRound();
+	UE_LOG(LogTemp, Warning, TEXT("Turn over"))
+	//StartRound();
 }
 
 // Returns true if the round is complete.
@@ -159,5 +160,11 @@ void ACombatGameModeBase::RunActions()
 void ACombatGameModeBase::StartNextTurn()
 {
 	bCombatantActing = true;
-	UE_LOG(LogTemp, Warning, TEXT("Next turn started"));
+	GetNextToAct()->StartTurn(AllCombatants);
+}
+
+// Notifies the GameMode that the acting combatant has finished their turn.
+void ACombatGameModeBase::NotifyEndTurn()
+{
+	bCombatantActing = false;
 }

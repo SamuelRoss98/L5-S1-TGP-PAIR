@@ -35,14 +35,15 @@ void ACombatant::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (bTurnInProgress)
+	if (bActionInProgress)
 	{
-		WaitTimer += DeltaTime;
+		EndTurn();
+		/*WaitTimer += DeltaTime;
 		if (WaitTimer >= WaitTime)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Timer expired"))
 			EndTurn();
-		}
+		}*/
 	}
 
 }
@@ -71,25 +72,27 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 // Starts this combatants turn.
 void ACombatant::StartTurn(TArray<ACombatant*> AllCombatants)
 {
-	bTurnInProgress = true;
-	UE_LOG(LogTemp, Warning, TEXT("%s started their turn."), *(CharacterName))
-	CombatantController->CombatDecision(AllCombatants);
+	TurnAction = CombatantController->GetAction(AllCombatants);
+
+	bActionInProgress = true;
 }
 
 // Ends this combants turn.
 void ACombatant::EndTurn()
 {
 	bActedThisTurn = true;
-	bTurnInProgress = false;
+	bActionInProgress = false;
+
 	WaitTimer = 0.0f;
 	UE_LOG(LogTemp, Warning, TEXT("%s ended their turn."), *(CharacterName))
 
 	SetActorLocation(OriginalTransform.GetLocation());
 	SetActorRotation(OriginalTransform.GetRotation());
 
-	/*ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	// Notify the game mode that our turn is over.
+	ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (CombatGameMode)
-		CombatGameMode->TurnFinished();*/
+		CombatGameMode->NotifyEndTurn();
 }
 
 // Returns the interaction point Transform.
@@ -131,7 +134,7 @@ bool ACombatant::IsOnPlayerTeam() const
 // Returns true while this combatant is taking its turn.
 bool ACombatant::IsTurnInProgress() const
 {
-	return bTurnInProgress;
+	return bActionInProgress;
 }
 
 // Attacks a combatant.

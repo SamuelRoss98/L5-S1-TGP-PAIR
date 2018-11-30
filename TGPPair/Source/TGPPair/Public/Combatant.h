@@ -114,7 +114,7 @@ private:
 	bool bPlayerTeam = false;
 
 	// True while the combatant is taking its turn.
-	bool bTurnInProgress = false;
+	bool bActionInProgress = false;
 
 	// Original position of the combatant.
 	FTransform OriginalTransform;

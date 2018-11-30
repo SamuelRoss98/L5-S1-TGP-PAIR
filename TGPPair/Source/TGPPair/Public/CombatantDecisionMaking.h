@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
+
+#include "CombatantAction.h"
+
 #include "CombatantDecisionMaking.generated.h"
 
 class ACombatant;
@@ -25,5 +28,5 @@ class TGPPAIR_API ICombatantDecisionMaking
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	// Makes a combat decision for the combatant.
-	virtual void CombatDecision(TArray<ACombatant*> AllCombatants) = 0;
+	virtual FCombatantAction GetAction(TArray<ACombatant*> AllCombatants) = 0;
 };
