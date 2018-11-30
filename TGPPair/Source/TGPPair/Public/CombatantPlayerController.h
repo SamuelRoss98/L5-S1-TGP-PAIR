@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 
 #include "CombatantDecisionMaking.h"
+#include "CombatantAction.h"
 
 #include "CombatantPlayerController.generated.h"
 
@@ -30,4 +31,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	bool IsDecisionFinished();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	FCombatantAction GetAction();
 };

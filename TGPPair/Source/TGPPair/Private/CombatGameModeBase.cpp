@@ -33,25 +33,24 @@ void ACombatGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	if (bPlayerDecisionComplete)
-	{
-		// Start doing turns.
-		UE_LOG(LogTemp, Warning, TEXT("TURN"))
-	}
+	// Run actions.
+	if (bActionsInProgress)
+		RunActions();
 
-	// Check if the player is done deciding.
+	// Check if actions are ready.
 	else
-		if (CombatantPlayerController)
-			bPlayerDecisionComplete = CombatantPlayerController->IsDecisionFinished();
+	{
+		if (bPlayerDecisionComplete)
+			StartRoundActions();
+
+		// Check if the player is done deciding.
+		else
+			if (CombatantPlayerController)
+				bPlayerDecisionComplete = CombatantPlayerController->IsDecisionFinished();
+	}
 }
 
-// Call to alert the game mode that a turn is finished.
-void ACombatGameModeBase::TurnFinished()
-{
-	bActionInProgress = false;
-}
-
-// Spawns the combatants.
+// Calls spawning code for all combatants in this battle.
 void ACombatGameModeBase::SpawnCombatants()
 {
 	FActorSpawnParameters SpawnParams;
@@ -62,14 +61,13 @@ void ACombatGameModeBase::SpawnCombatants()
 	TArray<FCharacterProperties*> OutRows;
 	CombatantDataTable->GetAllRows<FCharacterProperties>("GENERAL", OutRows);
 
-	SpawnCombatant(SpawnPointA, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointB, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, true);		// Player
-	SpawnCombatant(SpawnPointC, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, false);		// Friendly AI
-	SpawnCombatant(SpawnPointD, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointE, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
-	SpawnCombatant(SpawnPointF, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);		// Enemy AI
+	SpawnCombatant(SpawnPointB, FRotator::ZeroRotator, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], true, true);		// Player
+	SpawnCombatant(SpawnPointD, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);				// Enemy AI
+	SpawnCombatant(SpawnPointE, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);				// Enemy AI
+	SpawnCombatant(SpawnPointF, EnemyRotation, *OutRows[FMath::RandRange(0, OutRows.Num() - 1)], false, false);				// Enemy AI
 }
 
+// Spawns a single combatant.
 void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotation, FCharacterProperties Character, bool bFriendly, bool bPlayer)
 {
 	ACombatant * NewCombatant = nullptr;
@@ -89,24 +87,21 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotat
 	}
 }
 
-// Starts the turn of the next combatant.
-void ACombatGameModeBase::StartNextTurn()
+// Starts the next combat round.
+void ACombatGameModeBase::StartRound()
 {
 	if (CombatantPlayerController)
 		CombatantPlayerController->StartCombatDecisions();
+}
 
+// Ends the current round.
+void ACombatGameModeBase::EndRound()
+{
+	bActionsInProgress = false;
 	bPlayerDecisionComplete = false;
 
-	//if (!IsRoundComplete())
-	//{
-	//	GetNextToAct()->StartTurn(AllCombatants);
-	//	bActionInProgress = true;
-	//}
-
-	//else
-	//{
-	//	// TODO: Start new round.
-	//}
+	// Next round starts immediately.
+	StartRound();
 }
 
 // Returns true if the round is complete.
@@ -141,3 +136,28 @@ ACombatant * ACombatGameModeBase::GetNextToAct() const
 	return NextToAct;
 }
 
+// Starts the process of carrying out the actions for the round.
+void ACombatGameModeBase::StartRoundActions()
+{
+	bActionsInProgress = true;
+}
+
+// Main loop for actions logic.
+void ACombatGameModeBase::RunActions()
+{
+	if (!bCombatantActing)
+	{
+		if (IsRoundComplete())
+			EndRound();
+
+		else
+			StartNextTurn();
+	}
+}
+
+// Starts the turn of the next combatant to carry out their action.
+void ACombatGameModeBase::StartNextTurn()
+{
+	bCombatantActing = true;
+	UE_LOG(LogTemp, Warning, TEXT("Next turn started"));
+}

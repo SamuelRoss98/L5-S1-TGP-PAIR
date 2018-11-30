@@ -25,26 +25,26 @@ public:
 	// Sets default values for this actor's properties
 	ACombatGameModeBase();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Call to alert the game mode that a turn is finished.
-	void TurnFinished();
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 private:
-	// Spawns the combatants.
+	// Calls spawning code for all combatants in this battle.
 	void SpawnCombatants();
 
 	// Spawns a single combatant.
 	void SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotation, FCharacterProperties Character, bool bFriendly, bool bPlayer);
 
-	// Starts the turn of the next combatant.
-	void StartNextTurn();
+	// Starts the next combat round.
+	void StartRound();
+
+	// Ends the current round.
+	void EndRound();
 
 	// Returns true if the round is complete.
 	bool IsRoundComplete() const;
@@ -52,14 +52,23 @@ private:
 	// Return the next combatant to act based on their speed.
 	ACombatant * GetNextToAct() const;
 
+	// Starts the process of carrying out the actions for the round.
+	void StartRoundActions();
+
+	// Main loop for actions logic.
+	void RunActions();
+
+	// Starts the turn of the next combatant to carry out their action.
+	void StartNextTurn();
+
 private:
 	// Spawn points temporarily hardcoded.
-	FVector SpawnPointA = FVector(250.0f, 550.0f, 0.0f);
-	FVector SpawnPointB = FVector(0.0f, 550.0f, 0.0f);
-	FVector SpawnPointC = FVector(-250.0f, 550.0f, 0.0f);
-	FVector SpawnPointD = FVector(250.0f, -550.0f, 0.0f);
-	FVector SpawnPointE = FVector(0.0f, -550.0f, 0.0f);
-	FVector SpawnPointF = FVector(-250.0f, -550.0f, 0.0f);
+	FVector SpawnPointA = FVector(250.0f, 400.0f, 0.0f);
+	FVector SpawnPointB = FVector(0.0f, -400.0f, 0.0f);
+	FVector SpawnPointC = FVector(-250.0f, 400.0f, 0.0f);
+	FVector SpawnPointD = FVector(250.0f, 400.0f, 0.0f);
+	FVector SpawnPointE = FVector(0.0f, 400.0f, 0.0f);
+	FVector SpawnPointF = FVector(-250.0f, 400.0f, 0.0f);
 	FRotator EnemyRotation = FRotator(0.0f, -180.0f, 0.0f);
 
 	// Combatant class to spawn from.
@@ -69,15 +78,19 @@ private:
 	// Array storing all the Combatants in this fight.
 	TArray<ACombatant *> AllCombatants;
 
+	// Data for combatant types.
 	UPROPERTY(EditAnywhere)
 	UDataTable* CombatantDataTable;
-
-	// True if a combatant is currently acting.
-	bool bActionInProgress = false;
 
 	// Player controller for the friendly team.
 	ACombatantPlayerController * CombatantPlayerController = nullptr;
 
-	// Has the player decided their actions for the turn.
+	// True if the player has made their decision(s) for this round.
 	bool bPlayerDecisionComplete = false;
+
+	// True while the actions for this round are being carried out.
+	bool bActionsInProgress = false;
+
+	// True while a single combatant is acting (animating etc.).
+	bool bCombatantActing = false;
 };

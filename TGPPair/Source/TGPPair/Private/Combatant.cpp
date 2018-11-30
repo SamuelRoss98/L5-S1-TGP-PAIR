@@ -87,9 +87,9 @@ void ACombatant::EndTurn()
 	SetActorLocation(OriginalTransform.GetLocation());
 	SetActorRotation(OriginalTransform.GetRotation());
 
-	ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	/*ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (CombatGameMode)
-		CombatGameMode->TurnFinished();
+		CombatGameMode->TurnFinished();*/
 }
 
 // Returns the interaction point Transform.
