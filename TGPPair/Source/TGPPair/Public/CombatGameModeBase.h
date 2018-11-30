@@ -78,8 +78,14 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ACombatant> CombatantClass;
 
-	// Array storing all the Combatants in this fight.
+	// Stores all combatants.
 	TArray<ACombatant *> AllCombatants;
+
+	// Container for friendly (player) team combatants.
+	TArray<ACombatant *> FriendlyCombatants;
+
+	// Container for the enemy team combatants.
+	TArray<ACombatant *> EnemyCombatants;
 
 	// Data for combatant types.
 	UPROPERTY(EditAnywhere)

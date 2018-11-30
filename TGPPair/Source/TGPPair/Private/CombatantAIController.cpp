@@ -5,7 +5,7 @@
 #include "Combatant.h"
 
 // Makes a combat decision for the combatant.
-FCombatantAction ACombatantAIController::GetAction(TArray<ACombatant*> AllCombatants)
+FCombatantAction ACombatantAIController::GetAction(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam)
 {
 	return FCombatantAction();
 }

@@ -78,6 +78,14 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotat
 	if (NewCombatant)
 	{
 		NewCombatant->LoadCombatant(Character, bPlayer, bFriendly);
+
+		// Add combatant to correct team.
+		if (bFriendly)
+			FriendlyCombatants.Add(NewCombatant);
+		else
+			EnemyCombatants.Add(NewCombatant);
+
+		// Store in general combatant array too.
 		AllCombatants.Add(NewCombatant);
 	}
 
@@ -160,7 +168,7 @@ void ACombatGameModeBase::RunActions()
 void ACombatGameModeBase::StartNextTurn()
 {
 	bCombatantActing = true;
-	GetNextToAct()->StartTurn(AllCombatants);
+	GetNextToAct()->StartTurn(FriendlyCombatants, EnemyCombatants);
 }
 
 // Notifies the GameMode that the acting combatant has finished their turn.

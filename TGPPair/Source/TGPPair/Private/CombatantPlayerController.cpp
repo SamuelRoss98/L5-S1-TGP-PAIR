@@ -3,7 +3,7 @@
 #include "CombatantPlayerController.h"
 
 // Makes a combat decision for the combatant.
-FCombatantAction ACombatantPlayerController::GetAction(TArray<ACombatant*> AllCombatants) 
+FCombatantAction ACombatantPlayerController::GetAction(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam)
 {
 	return GetAction();
 }

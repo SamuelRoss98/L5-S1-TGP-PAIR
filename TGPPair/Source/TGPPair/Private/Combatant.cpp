@@ -36,16 +36,7 @@ void ACombatant::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (bActionInProgress)
-	{
 		EndTurn();
-		/*WaitTimer += DeltaTime;
-		if (WaitTimer >= WaitTime)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Timer expired"))
-			EndTurn();
-		}*/
-	}
-
 }
 
 // Called to bind functionality to input
@@ -61,20 +52,27 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 	CharacterName = Properties.CharacterName;
 	BaseCombatAttributes = Properties.CombatAttributes;
 	CurrentCombatAttributes = BaseCombatAttributes;
-
-	SpawnCombatantController(bPlayer);
+		
 	bPlayerTeam = bFriendly;
 
-	FString TeamStr = (bPlayerTeam) ? "Friendly" : "Enemy";
-	UE_LOG(LogTemp, Log, TEXT("%s combatant loaded: %s"), *(TeamStr), *(Properties.CharacterName))
+	if (!bPlayerTeam)
+		SpawnCombatantController(bPlayer);
+	else
+	{
+		CombatantController = Cast<ACombatantPlayerController>(GetWorld()->GetFirstPlayerController());
+
+		if (!CombatantController)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Player controlled combatant failed to find the player controller."))
+		}
+	}
 }
 
 // Starts this combatants turn.
-void ACombatant::StartTurn(TArray<ACombatant*> AllCombatants)
+void ACombatant::StartTurn(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam)
 {
-	TurnAction = CombatantController->GetAction(AllCombatants);
-
-	bActionInProgress = true;
+	TurnAction = CombatantController->GetAction(FriendlyTeam, EnemyTeam);
+	StartTurnAction();
 }
 
 // Ends this combants turn.
@@ -93,6 +91,12 @@ void ACombatant::EndTurn()
 	ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (CombatGameMode)
 		CombatGameMode->NotifyEndTurn();
+}
+
+// Starts the action for this turn.
+void ACombatant::StartTurnAction()
+{
+	bActionInProgress = true;
 }
 
 // Returns the interaction point Transform.
@@ -172,5 +176,11 @@ const FCombatantAction ACombatant::GetTurnAction() const
 void ACombatant::SetTurnAction(const FCombatantAction Action)
 {
 	TurnAction = Action;
+}
+
+// Runs while a combatant is doing an attack action.
+void ACombatant::AttackActionLoop()
+{
+
 }
 

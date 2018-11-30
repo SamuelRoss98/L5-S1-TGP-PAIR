@@ -41,10 +41,19 @@ public:
 	void LoadCombatant(FCharacterProperties Properties, bool bPlayer, bool bFriendly);
 
 	// Starts this combatants turn.
-	void StartTurn(TArray<ACombatant*> AllCombatants);
+	void StartTurn(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam);
 
 	// Ends this combants turn.
 	void EndTurn();
+
+	// Starts the action for this turn.
+	void StartTurnAction();
+
+	// Runs while a combatant is doing an attack action.
+	void AttackActionLoop();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MoveToAttackTarget(ACombatant * Target);
 
 	// Returns the interaction point Transform.
 	FTransform GetInteractionTransform() const;
@@ -115,6 +124,9 @@ private:
 
 	// True while the combatant is taking its turn.
 	bool bActionInProgress = false;
+
+	// True while any animation or movement is is in progress.
+	bool bAnimationInProgress = false;
 
 	// Original position of the combatant.
 	FTransform OriginalTransform;

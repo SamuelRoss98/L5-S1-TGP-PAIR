@@ -20,7 +20,7 @@ class TGPPAIR_API ACombatantPlayerController : public APlayerController, public 
 	
 public:
 	// Makes a combat decision for the combatant.
-	virtual FCombatantAction GetAction(TArray<ACombatant*> AllCombatants) override;
+	virtual FCombatantAction GetAction(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam) override;
 
 	// Called by the gamemode to start the players action selection process each turn.
 	void StartCombatDecisions();
