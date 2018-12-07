@@ -34,16 +34,12 @@ void ACombatant::BeginPlay()
 void ACombatant::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	if (bActionInProgress)
-		EndTurn();
 }
 
 // Called to bind functionality to input
 void ACombatant::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 // Initialize this combatant with a CharacterProperties structure.
@@ -68,41 +64,37 @@ void ACombatant::LoadCombatant(FCharacterProperties Properties, bool bPlayer, bo
 	}
 }
 
-// Starts this combatants turn.
-void ACombatant::StartTurn(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam)
+// Prepares the combatant for a new round.
+void ACombatant::PrepareForNewRound()
 {
-	TurnAction = CombatantController->GetAction(FriendlyTeam, EnemyTeam);
-	StartTurnAction();
+	bHasTakenTurn = false;
 }
 
-// Ends this combants turn.
+// Ends this combatants turn.
 void ACombatant::EndTurn()
 {
-	bActedThisTurn = true;
-	bActionInProgress = false;
-
-	WaitTimer = 0.0f;
-	UE_LOG(LogTemp, Warning, TEXT("%s ended their turn."), *(CharacterName))
-
-	SetActorLocation(OriginalTransform.GetLocation());
-	SetActorRotation(OriginalTransform.GetRotation());
-
-	// Notify the game mode that our turn is over.
-	ACombatGameModeBase * CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
-	if (CombatGameMode)
-		CombatGameMode->NotifyEndTurn();
+	bHasTakenTurn = true;
+	ACombatGameModeBase * GameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (GameMode)
+		GameMode->NotifyEndTurn();
 }
 
-// Starts the action for this turn.
-void ACombatant::StartTurnAction()
+// Returns the combatants action for a turn.
+FCombatantAction ACombatant::GetActionForTurn()
 {
-	bActionInProgress = true;
+	return CombatantController->GetAction();
 }
 
 // Returns the interaction point Transform.
 FTransform ACombatant::GetInteractionTransform() const
 {
 	return InteractionPoint->GetComponentTransform();
+}
+
+// Returns the combatants resting transform.
+FTransform ACombatant::GetRestingTransform() const
+{
+	return OriginalTransform;
 }
 
 // Return the character name of this combatant.
@@ -124,9 +116,9 @@ FCombatAttribute ACombatant::GetBaseCombatAttributes() const
 }
 
 // Returns true if the combatant has already acted this turn.
-bool ACombatant::HasActedThisTurn() const
+bool ACombatant::HasTakenTurn() const
 {
-	return bActedThisTurn;
+	return bHasTakenTurn;
 }
 
 // Returns true if the combatant is on the players team.
@@ -177,10 +169,3 @@ void ACombatant::SetTurnAction(const FCombatantAction Action)
 {
 	TurnAction = Action;
 }
-
-// Runs while a combatant is doing an attack action.
-void ACombatant::AttackActionLoop()
-{
-
-}
-

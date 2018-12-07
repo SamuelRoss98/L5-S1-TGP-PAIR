@@ -28,5 +28,5 @@ class TGPPAIR_API ICombatantDecisionMaking
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	// Makes a combat decision for the combatant.
-	virtual FCombatantAction GetAction(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam) = 0;
+	virtual FCombatantAction GetAction() = 0;
 };

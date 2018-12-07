@@ -19,5 +19,5 @@ class TGPPAIR_API ACombatantAIController : public AAIController, public ICombata
 	
 public:
 	// Makes a combat decision for the combatant.
-	virtual FCombatantAction GetAction(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam) override;
+	virtual FCombatantAction GetAction() override;
 };

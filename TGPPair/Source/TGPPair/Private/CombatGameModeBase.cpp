@@ -50,6 +50,24 @@ void ACombatGameModeBase::Tick(float DeltaSeconds)
 	}
 }
 
+// Returns either the friendly or enemy team of combatants.
+TArray<ACombatant *> ACombatGameModeBase::GetTeam(bool bFriendly)
+{
+	if (bFriendly)
+		return FriendlyCombatants;
+
+	return EnemyCombatants;
+}
+
+// Returns a combatant from a specified team.
+ACombatant* ACombatGameModeBase::GetCombatantFromTeam(bool bFriendly, int index)
+{
+	if (bFriendly)
+		return FriendlyCombatants[index];
+
+	return EnemyCombatants[index];
+}
+
 // Calls spawning code for all combatants in this battle.
 void ACombatGameModeBase::SpawnCombatants()
 {
@@ -98,6 +116,11 @@ void ACombatGameModeBase::SpawnCombatant(FVector SpawnPoint, FRotator SpawnRotat
 // Starts the next combat round.
 void ACombatGameModeBase::StartRound()
 {
+	for (ACombatant * C : FriendlyCombatants)
+		C->PrepareForNewRound();
+	for (ACombatant * C : EnemyCombatants)
+		C->PrepareForNewRound();
+
 	if (CombatantPlayerController)
 		CombatantPlayerController->StartCombatDecisions();
 }
@@ -110,14 +133,14 @@ void ACombatGameModeBase::EndRound()
 
 	// Next round starts immediately.
 	UE_LOG(LogTemp, Warning, TEXT("Turn over"))
-	//StartRound();
+	StartRound();
 }
 
 // Returns true if the round is complete.
 bool ACombatGameModeBase::IsRoundComplete() const
 {
 	for (ACombatant* Combatant : AllCombatants)
-		if (!Combatant->HasActedThisTurn())
+		if (!Combatant->HasTakenTurn())
 			return false;
 
 	return true;
@@ -131,7 +154,7 @@ ACombatant * ACombatGameModeBase::GetNextToAct() const
 
 	for (ACombatant* Combatant : AllCombatants)
 	{
-		if (!Combatant->HasActedThisTurn())
+		if (!Combatant->HasTakenTurn())
 		{
 			int Speed = Combatant->GetCurrentCombatAttributes().Speed;
 			if (Speed > HighestSpeed)
@@ -168,7 +191,8 @@ void ACombatGameModeBase::RunActions()
 void ACombatGameModeBase::StartNextTurn()
 {
 	bCombatantActing = true;
-	GetNextToAct()->StartTurn(FriendlyCombatants, EnemyCombatants);
+	GetNextToAct()->StartTurn();
+	UE_LOG(LogTemp, Warning, TEXT("Called"))
 }
 
 // Notifies the GameMode that the acting combatant has finished their turn.

@@ -32,6 +32,14 @@ public:
 	// Notifies the GameMode that the acting combatant has finished their turn.
 	void NotifyEndTurn();
 
+	// Returns either the friendly or enemy team of combatants.
+	UFUNCTION(BlueprintCallable)
+	TArray<ACombatant*> GetTeam(bool bFriendly);
+
+	// Returns a combatant from a specified team.
+	UFUNCTION(BlueprintCallable)
+	ACombatant* GetCombatantFromTeam(bool bFriendly, int index);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

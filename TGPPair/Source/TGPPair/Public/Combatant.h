@@ -40,23 +40,28 @@ public:
 	// Initialize this combatant with a CharacterProperties structure.
 	void LoadCombatant(FCharacterProperties Properties, bool bPlayer, bool bFriendly);
 
-	// Starts this combatants turn.
-	void StartTurn(TArray<ACombatant *> FriendlyTeam, TArray<ACombatant *> EnemyTeam);
+	// Prepares the combatant for a new round.
+	void PrepareForNewRound();
 
-	// Ends this combants turn.
+	// Starts this combatants turn.
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartTurn();
+
+	// Ends this combatants turn.
+	UFUNCTION(BlueprintCallable)
 	void EndTurn();
 
-	// Starts the action for this turn.
-	void StartTurnAction();
-
-	// Runs while a combatant is doing an attack action.
-	void AttackActionLoop();
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void MoveToAttackTarget(ACombatant * Target);
+	// Returns the combatants action for a turn.
+	UFUNCTION(BlueprintCallable)
+	FCombatantAction GetActionForTurn();
 
 	// Returns the interaction point Transform.
+	UFUNCTION(BlueprintPure)
 	FTransform GetInteractionTransform() const;
+
+	// Returns the combatants resting transform.
+	UFUNCTION(BlueprintPure)
+	FTransform GetRestingTransform() const;
 
 	// Return the character name of this combatant.
 	UFUNCTION(BlueprintPure)
@@ -70,9 +75,10 @@ public:
 	FCombatAttribute GetBaseCombatAttributes() const;
 
 	// Returns true if the combatant has already acted this turn.
-	bool HasActedThisTurn() const;
+	bool HasTakenTurn() const;
 
 	// Returns true if the combatant is on the players team.
+	UFUNCTION(BlueprintPure)
 	bool IsOnPlayerTeam() const;
 
 	// Returns true while this combatant is taking its turn.
@@ -117,7 +123,7 @@ private:
 	FCombatAttribute BaseCombatAttributes = FCombatAttribute();
 
 	// True if the combatant has acted this turn.
-	bool bActedThisTurn = false;
+	bool bHasTakenTurn = false;
 
 	// True if combatant is on the players team.
 	bool bPlayerTeam = false;
