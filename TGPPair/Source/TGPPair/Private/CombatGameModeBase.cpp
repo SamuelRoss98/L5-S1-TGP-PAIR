@@ -15,8 +15,6 @@ ACombatGameModeBase::ACombatGameModeBase()
 // Called when the game starts or when spawned
 void ACombatGameModeBase::BeginPlay()
 {
-	Super::BeginPlay();
-
 	// ...
 
 	CombatantPlayerController = Cast<ACombatantPlayerController>(GetWorld()->GetFirstPlayerController());
@@ -26,6 +24,8 @@ void ACombatGameModeBase::BeginPlay()
 	}
 
 	SpawnCombatants();
+
+	Super::BeginPlay();
 }
 
 // Called every frame
