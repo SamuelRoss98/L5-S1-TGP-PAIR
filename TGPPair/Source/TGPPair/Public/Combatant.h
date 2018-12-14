@@ -72,7 +72,12 @@ public:
 	FCombatAttribute GetCurrentCombatAttributes() const;
 
 	// Returns the combatants base combat attributes.
+	UFUNCTION(BlueprintPure)
 	FCombatAttribute GetBaseCombatAttributes() const;
+
+	// Calculates and returns the damage dealt by this combatant if damaging the given combatant.
+	UFUNCTION(BlueprintCallable)
+	int CalculateDamage(ACombatant * CombatantToDamage) const;
 
 	// Returns true if the combatant has already acted this turn.
 	bool HasTakenTurn() const;
@@ -83,6 +88,10 @@ public:
 
 	// Returns true while this combatant is taking its turn.
 	bool IsTurnInProgress() const;
+	
+	// Applies an amount of damage to this combatant.
+	UFUNCTION(BlueprintCallable)
+	void ApplyDamage(int damage);
 
 public:
 	// Attacks a combatant.

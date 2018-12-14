@@ -115,6 +115,20 @@ FCombatAttribute ACombatant::GetBaseCombatAttributes() const
 	return BaseCombatAttributes;
 }
 
+// Calculates and returns the damage dealt by this combatant if damaging the given combatant.
+int ACombatant::CalculateDamage(ACombatant * CombatantToDamage) const
+{
+	int meleeDamage = CurrentCombatAttributes.MeleeAttack - CombatantToDamage->GetCurrentCombatAttributes().MeleeDefense;
+	int rangedDamage = CurrentCombatAttributes.RangedAttack - CombatantToDamage->GetCurrentCombatAttributes().RangedDefense;
+	int magicDamage = CurrentCombatAttributes.MagicAttack - CombatantToDamage->GetCurrentCombatAttributes().MagicDefense;
+
+	meleeDamage = meleeDamage < 0 ? 0 : meleeDamage;
+	rangedDamage = rangedDamage < 0 ? 0 : rangedDamage;
+	magicDamage = magicDamage < 0 ? 0 : magicDamage;
+
+	return meleeDamage + rangedDamage + magicDamage;
+}
+
 // Returns true if the combatant has already acted this turn.
 bool ACombatant::HasTakenTurn() const
 {
@@ -168,4 +182,14 @@ const FCombatantAction ACombatant::GetTurnAction() const
 void ACombatant::SetTurnAction(const FCombatantAction Action)
 {
 	TurnAction = Action;
+}
+
+// Applies an amount of damage to this combatant.
+void ACombatant::ApplyDamage(int damage)
+{
+	CurrentCombatAttributes.Health -= damage;
+
+	// TODO: Die.
+	if (CurrentCombatAttributes.Health <= 0)
+		return;
 }
