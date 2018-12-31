@@ -12,6 +12,7 @@
 class UStaticMeshComponent;
 class USceneComponent;
 class ICombatDecisionInterface;
+class UInventoryComponent;
 
 UCLASS()
 class TGPPAIR_API ACombatantPawn : public APawn
@@ -60,6 +61,10 @@ protected:
 	// Interaction transform.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent* InteractionTransform = nullptr;
+
+	// Inventory.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UInventoryComponent* Inventory = nullptr;
 
 	// Character this combatant was created as.
 	FNamedStatPack CharacterBaseValues;

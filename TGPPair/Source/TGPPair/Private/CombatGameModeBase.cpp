@@ -39,6 +39,12 @@ void ACombatGameModeBase::ResetForNewRound()
 	}
 }
 
+// Returns the items data table.
+UDataTable* ACombatGameModeBase::GetItemsData() const 
+{
+	return ItemsDataTable;
+}
+
 // Spawns combatants.
 void ACombatGameModeBase::SpawnCombatants()
 {

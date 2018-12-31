@@ -5,6 +5,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SceneComponent.h"
 #include "CombatDecisionInterface.h"
+#include "InventoryComponent.h"
 
 // Sets default values
 ACombatantPawn::ACombatantPawn()
@@ -14,9 +15,12 @@ ACombatantPawn::ACombatantPawn()
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
 	InteractionTransform = CreateDefaultSubobject<USceneComponent>("InteractionTransform");
+	Inventory = CreateDefaultSubobject<UInventoryComponent>("Inventory");
 
 	RootComponent = Mesh;
 	InteractionTransform->SetupAttachment(Mesh);
+
+	AddOwnedComponent(Inventory);
 }
 
 // Called when the game starts or when spawned
@@ -53,6 +57,7 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 	CharacterBaseValues = Character;
 	CurrentStats = CharacterBaseValues.Stats;
 
+	Inventory->AddItem("Health Potion");
 	return true;
 }
 

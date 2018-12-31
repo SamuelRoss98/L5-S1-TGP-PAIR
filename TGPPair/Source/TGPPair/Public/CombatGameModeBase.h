@@ -7,6 +7,7 @@
 #include "CombatGameModeBase.generated.h"
 
 class ACombatantPawn;
+class UDataTable;
 class ACombatAIController;
 
 /**
@@ -36,7 +37,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ResetForNewRound();
 
-public:
+	// Returns the items data table.
+	UDataTable* GetItemsData() const;
+
+protected:
 	// Number of enemies to spawn.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int EnemyCount = 1;
@@ -58,4 +62,8 @@ public:
 
 	// Contains all enemy combatants.
 	TArray<ACombatantPawn*> EnemyCombatants = { nullptr };
+
+	// Items data.
+	UPROPERTY(EditAnywhere)
+	UDataTable* ItemsDataTable;
 };
