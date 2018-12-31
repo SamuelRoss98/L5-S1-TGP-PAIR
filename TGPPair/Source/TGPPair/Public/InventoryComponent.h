@@ -29,12 +29,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;	
 
 	// Add a specified item to the inventory.
-	void AddItem(FString itemName);
+	void AddItem(FString itemName, int quantity);
 
 	// Returns true if the inventory is full.
 	bool IsFull() const;
 
 	// Returns the contents of the inventory.
+	UFUNCTION(BlueprintCallable)
 	TArray<FInventorySlot> GetContents() const;
 
 private:

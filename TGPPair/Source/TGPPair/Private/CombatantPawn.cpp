@@ -57,7 +57,7 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 	CharacterBaseValues = Character;
 	CurrentStats = CharacterBaseValues.Stats;
 
-	Inventory->AddItem("Health Potion");
+	Inventory->AddItem("Health Potion", 3);
 	return true;
 }
 

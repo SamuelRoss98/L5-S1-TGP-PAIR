@@ -38,7 +38,7 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 }
 
 // Add a specified item to the inventory.
-void UInventoryComponent::AddItem(FString itemName)
+void UInventoryComponent::AddItem(FString itemName, int quantity)
 {
 	if (ItemsData == nullptr)
 	{
@@ -67,7 +67,7 @@ void UInventoryComponent::AddItem(FString itemName)
 		return;
 
 	// Else we can create the new slot.
-	Slots.Add(FInventorySlot(Item, 1));
+	Slots.Add(FInventorySlot(Item, quantity));
 }
 
 // Returns true if the inventory is full.
