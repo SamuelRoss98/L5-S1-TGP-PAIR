@@ -88,6 +88,16 @@ FStatPack ACombatantPawn::GetStats() const
 	return CurrentStats;
 }
 
+void ACombatantPawn::SetCurrentAction(FCombatAction newAction)
+{
+	CurrentAction = newAction;
+
+	FString targetIndex = FString::FromInt(CurrentAction.TargetIndex);
+	FString type = FString::FromInt((int32)CurrentAction.ActionType);
+
+	UE_LOG(LogTemp, Warning, TEXT("New action set. [Type: %s, Target: %s]"), *type, *targetIndex)
+}
+
 // Flag whether this combatant has taken their turn or not.
 void ACombatantPawn::SetTurnTaken(bool setting)
 {

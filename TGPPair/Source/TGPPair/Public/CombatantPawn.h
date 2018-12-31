@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 
 #include "NamedStatPack.h"
+#include "CombatAction.h"
 
 #include "CombatantPawn.generated.h"
 
@@ -48,6 +49,10 @@ public:
 	UFUNCTION(BlueprintPure)
 	FStatPack GetStats() const;
 
+	// Sets the current actions.
+	UFUNCTION(BlueprintCallable)
+	void SetCurrentAction(FCombatAction newAction);
+
 	// Flag whether this combatant has taken their turn or not.
 	void SetTurnTaken(bool setting);
 
@@ -75,6 +80,9 @@ protected:
 
 	// Current state of the combatants stats.
 	FStatPack CurrentStats;
+
+	// Currently set combat action.
+	FCombatAction CurrentAction;
 
 	// True if the combatant has taken their turn.
 	bool bTurnTaken = false;
