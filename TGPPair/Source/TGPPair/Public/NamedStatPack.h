@@ -13,7 +13,7 @@ struct FNamedStatPack : public FTableRowBase
 
 public:
 	FNamedStatPack() :
-		Name(""),
+		Name("null"),
 		Stats(FStatPack())
 	{}
 

@@ -57,7 +57,10 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 	CharacterBaseValues = Character;
 	CurrentStats = CharacterBaseValues.Stats;
 
-	Inventory->AddItem("Health Potion", 3);
+	Inventory->AddItem("Health Potion", 2);
+	Inventory->AddItem("Health Potion", 1);
+	Inventory->AddItem("Mana Potion", 2);
+	Inventory->AddItem("Super Mana Potion", 1);
 	return true;
 }
 
@@ -71,6 +74,12 @@ void ACombatantPawn::MakeCombatDescision()
 	}
 
 	//Controller->MakeDescision();
+}
+
+// Returns the NamedStatPack this character was created with.
+FNamedStatPack ACombatantPawn::GetBaseCharacter() const
+{
+	return CharacterBaseValues;
 }
 
 // Returns the current stats of the combatant.

@@ -40,6 +40,10 @@ public:
 	// Starts the descision process for this combatant.
 	void MakeCombatDescision();
 
+	// Returns the NamedStatPack this character was created with.
+	UFUNCTION(BlueprintPure)
+	FNamedStatPack GetBaseCharacter() const;
+
 	// Returns the current stats of the combatant.
 	UFUNCTION(BlueprintPure)
 	FStatPack GetStats() const;

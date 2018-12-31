@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+
+#include "NamedStatPack.h"
+
 #include "CombatGameModeBase.generated.h"
 
 class ACombatantPawn;
@@ -37,8 +40,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ResetForNewRound();
 
+	// Return the enemy combatant pawns.
+	UFUNCTION(BlueprintCallable)
+	TArray<ACombatantPawn*> GetEnemies() const;
+
 	// Returns the items data table.
 	UDataTable* GetItemsData() const;
+
+private:
+	// Returns a random character from the enemies data table.
+	FNamedStatPack GetRandomCharacter();
 
 protected:
 	// Number of enemies to spawn.
@@ -61,9 +72,13 @@ protected:
 	ACombatantPawn* PlayerCombatant = nullptr;
 
 	// Contains all enemy combatants.
-	TArray<ACombatantPawn*> EnemyCombatants = { nullptr };
+	TArray<ACombatantPawn*> EnemyCombatants;
 
 	// Items data.
 	UPROPERTY(EditAnywhere)
 	UDataTable* ItemsDataTable;
+
+	// Enemy data.
+	UPROPERTY(EditAnywhere)
+	UDataTable* EnemiesDataTable;
 };

@@ -39,10 +39,26 @@ void ACombatGameModeBase::ResetForNewRound()
 	}
 }
 
+// Return the enemy combatant pawns.
+TArray<ACombatantPawn*> ACombatGameModeBase::GetEnemies() const
+{
+	return EnemyCombatants;
+}
+
 // Returns the items data table.
 UDataTable* ACombatGameModeBase::GetItemsData() const 
 {
 	return ItemsDataTable;
+}
+
+// Returns a random character from the enemies data table.
+FNamedStatPack ACombatGameModeBase::GetRandomCharacter()
+{
+	TArray<FNamedStatPack*> outItems;
+	EnemiesDataTable->GetAllRows<FNamedStatPack>("GENERAL", outItems);
+
+	int randomIndex = FMath::RandRange(0, outItems.Num() - 1);
+	return *outItems[randomIndex];
 }
 
 // Spawns combatants.
@@ -98,7 +114,7 @@ void ACombatGameModeBase::SpawnCombatants()
 		Controller->SetPawn(NewEnemy);
 
 		// Init the enemy combatant.
-		if (!NewEnemy->Initialize(FNamedStatPack(), false, Cast<ICombatDecisionInterface>(Controller)))
+		if (!NewEnemy->Initialize(GetRandomCharacter(), false, Cast<ICombatDecisionInterface>(Controller)))
 		{
 			UE_LOG(LogTemp, Error, TEXT("Failed to initialize an enemy combatant."))
 				return;
@@ -106,6 +122,5 @@ void ACombatGameModeBase::SpawnCombatants()
 		EnemyCombatants.Add(NewEnemy);
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Combatants spawned successfully."))
-		StartNewRound();
+	StartNewRound();
 }
