@@ -2,6 +2,18 @@
 
 #include "CombatPlayerController.h"
 
+#include "CombatantPawn.h"
 
+ACombatantPawn* ACombatPlayerController::GetControlledCombatant() const
+{
+	return Cast<ACombatantPawn>(GetPawn());
+}
+
+// Starts the combat descision process for this controller.
+void ACombatPlayerController::MakeDescision()
+{
+	PlayerDecisionStart();
+	UE_LOG(LogTemp, Warning, TEXT("Player Decided"))
+}
 
 

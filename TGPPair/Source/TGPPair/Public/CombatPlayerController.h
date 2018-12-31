@@ -17,7 +17,16 @@ class TGPPAIR_API ACombatPlayerController : public APlayerController, public ICo
 {
 	GENERATED_BODY()
 	
-	
+public:
+	UFUNCTION(BlueprintPure)
+	ACombatantPawn * GetControlledCombatant() const;
+
+	// Starts the combat descision process for this controller.
+	void MakeDescision();
+
+	// Blueprint event called at the start of the player decision process.
+	UFUNCTION(BlueprintImplementableEvent)
+	void PlayerDecisionStart();
 	
 	
 };
