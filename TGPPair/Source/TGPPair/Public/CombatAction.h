@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "NamedStatPack.h"
+
 #include "CombatAction.generated.h"
 
 UENUM(BlueprintType)
@@ -21,12 +23,17 @@ struct FCombatAction
 public:
 	FCombatAction() :
 		ActionType(ECombatantActionType::NullAction),
+		ActionData(FNamedStatPack()),
 		TargetIndex(0)
 	{};
 
 	// Defines the action type.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ECombatantActionType ActionType;
+
+	// Named statpack that is associated with this action, e.g. a health potion.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FNamedStatPack ActionData;
 
 	// Index of the target on the target team.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
