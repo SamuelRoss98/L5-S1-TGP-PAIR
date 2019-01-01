@@ -20,7 +20,6 @@ void ACombatAIController::MakeDescision()
 	Action.TargetIndex = 0;
 
 	OurPawn->SetCurrentAction(Action);
-	UE_LOG(LogTemp, Warning, TEXT("AI decision made."))
 }
 
 

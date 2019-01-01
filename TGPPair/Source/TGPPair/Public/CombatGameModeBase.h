@@ -40,6 +40,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ResetForNewRound();
 
+	// Called to simulate the next action for this round.
+	void SimulateNextAction();
+	
 	// Return the enemy combatant pawns.
 	UFUNCTION(BlueprintCallable)
 	TArray<ACombatantPawn*> GetEnemies() const;
@@ -54,6 +57,12 @@ public:
 private:
 	// Returns a random character from the enemies data table.
 	FNamedStatPack GetRandomCharacter();
+
+	// Returns the next combatant to act this round.
+	ACombatantPawn* GetNextCombatantToAct() const;
+
+	// Returns true if all combatants have taken their turn.
+	bool IsEndOfRound() const;
 
 protected:
 	// Number of enemies to spawn.
@@ -77,6 +86,9 @@ protected:
 
 	// Contains all enemy combatants.
 	TArray<ACombatantPawn*> EnemyCombatants;
+
+	// Contains all combatants, player combatant followed by all enemies.
+	TArray<ACombatantPawn*> AllCombatants;
 
 	// Items data.
 	UPROPERTY(EditAnywhere)

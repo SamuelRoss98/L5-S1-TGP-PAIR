@@ -41,6 +41,14 @@ public:
 	// Starts the descision process for this combatant.
 	void MakeCombatDescision();
 
+	// Call to start this combatants turn.
+	UFUNCTION(BlueprintImplementableEvent)
+	void TakeTurn();
+
+	// Called by blueprint to end the combatants turn.
+	UFUNCTION(BlueprintCallable)
+	void EndTurn();
+
 	// Returns the NamedStatPack this character was created with.
 	UFUNCTION(BlueprintPure)
 	FNamedStatPack GetBaseCharacter() const;
@@ -58,6 +66,12 @@ public:
 
 	// Returns true if this combatant has taken their turn.
 	bool GetTurnTaken() const;
+
+	// Returns the combat log description of the current action.
+	FString GetActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies);
+
+	// Generates a description for an attack action.
+	FString GetAttackActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies);
 
 protected:
 	// Controller for this combatant.
@@ -86,4 +100,7 @@ protected:
 
 	// True if the combatant has taken their turn.
 	bool bTurnTaken = false;
+
+	// True if this combatant is the player.
+	bool bIsPlayer = false;
 };

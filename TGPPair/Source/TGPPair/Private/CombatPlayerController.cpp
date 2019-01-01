@@ -2,11 +2,18 @@
 
 #include "CombatPlayerController.h"
 
+#include "Engine/World.h"
+#include "CombatGameModeBase.h"
 #include "CombatantPawn.h"
 
 ACombatantPawn* ACombatPlayerController::GetControlledCombatant() const
 {
 	return Cast<ACombatantPawn>(GetPawn());
+}
+
+void ACombatPlayerController::UpdateCombatLogText(FString NewText)
+{
+	CombatLogText = NewText;
 }
 
 // Starts the combat descision process for this controller.
@@ -19,6 +26,9 @@ void ACombatPlayerController::MakeDescision()
 void ACombatPlayerController::DecisionComplete()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Player decision made."))
+	ACombatGameModeBase* CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (CombatGameMode != nullptr)
+		CombatGameMode->SimulateNextAction();
 }
 
 

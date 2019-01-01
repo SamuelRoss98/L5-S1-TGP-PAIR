@@ -21,6 +21,9 @@ public:
 	UFUNCTION(BlueprintPure)
 	ACombatantPawn * GetControlledCombatant() const;
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateCombatLogText(FString NewText);
+
 	// Starts the combat descision process for this controller.
 	void MakeDescision();
 
@@ -31,4 +34,8 @@ public:
 	// Called by blueprint once the player has decided their action using the UI.
 	UFUNCTION(BlueprintCallable)
 	void DecisionComplete();
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString CombatLogText;
 };

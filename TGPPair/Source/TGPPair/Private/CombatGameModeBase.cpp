@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "CombatantPawn.h"
 #include "CombatDecisionInterface.h"
+#include "CombatPlayerController.h"
 #include "CombatAIController.h"
 
 // Called when the game starts or when spawned
@@ -23,6 +24,7 @@ void ACombatGameModeBase::Tick(float DeltaTime)
 // Resets the combatants ready for a new round.
 void ACombatGameModeBase::ResetForNewRound()
 {
+	UE_LOG(LogTemp, Error, TEXT("Reset for new round."))
 	for (int i = 0; i < EnemyCombatants.Num(); ++i)
 	{
 		if (EnemyCombatants[i] != nullptr)
@@ -36,6 +38,29 @@ void ACombatGameModeBase::ResetForNewRound()
 	{
 		PlayerCombatant->SetTurnTaken(false);
 		PlayerCombatant->MakeCombatDescision();
+	}
+}
+
+// Called once all decisions are made to start simulating the actions.
+void ACombatGameModeBase::SimulateNextAction()
+{
+	if (IsEndOfRound())
+	{
+		ResetForNewRound();
+		return;
+	}
+
+	ACombatantPawn* NextToAct = GetNextCombatantToAct();
+	if (NextToAct != nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Called action start."))
+		// Update the combat log to reflect the next action.
+		FString ActionDesc = NextToAct->GetActionDescription(PlayerCombatant, EnemyCombatants);
+		ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
+		if (CombatPlayerController != nullptr)
+			CombatPlayerController->UpdateCombatLogText(ActionDesc);
+
+		NextToAct->TakeTurn();
 	}
 }
 
@@ -74,6 +99,37 @@ FNamedStatPack ACombatGameModeBase::GetRandomCharacter()
 	return *outItems[randomIndex];
 }
 
+// Returns the next combatant to act this round.
+ACombatantPawn* ACombatGameModeBase::GetNextCombatantToAct() const
+{
+	ACombatantPawn * NextToAct = nullptr;
+	int CurrentHighSpeed = -99999;
+
+	for (int i = 0; i < AllCombatants.Num(); ++i)
+	{
+		if (AllCombatants[i]->GetStats().Speed > CurrentHighSpeed)
+		{
+			if (!AllCombatants[i]->GetTurnTaken())
+			{
+				CurrentHighSpeed = AllCombatants[i]->GetStats().Speed;
+				NextToAct = AllCombatants[i];
+			}
+		}
+	}
+
+	return NextToAct;
+}
+
+// Returns true if all combatants have taken their turn.
+bool ACombatGameModeBase::IsEndOfRound() const
+{
+	for (int i = 0; i < AllCombatants.Num(); ++i)
+		if (!AllCombatants[i]->GetTurnTaken())
+			return false;
+	
+	return true;
+}
+
 // Spawns combatants.
 void ACombatGameModeBase::SpawnCombatants()
 {
@@ -96,6 +152,7 @@ void ACombatGameModeBase::SpawnCombatants()
 		UE_LOG(LogTemp, Error, TEXT("Failed to spawn the player combatant."))
 			return;
 	}
+	AllCombatants.Add(PlayerCombatant);
 	GetWorld()->GetFirstPlayerController()->SetPawn(PlayerCombatant);
 	if (!PlayerCombatant->Initialize(FNamedStatPack(), true, Cast<ICombatDecisionInterface>(GetWorld()->GetFirstPlayerController())))
 	{
@@ -133,6 +190,7 @@ void ACombatGameModeBase::SpawnCombatants()
 				return;
 		}
 		EnemyCombatants.Add(NewEnemy);
+		AllCombatants.Add(NewEnemy);
 	}
 
 	StartNewRound();
