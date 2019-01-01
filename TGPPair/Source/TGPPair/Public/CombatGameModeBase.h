@@ -44,6 +44,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<ACombatantPawn*> GetEnemies() const;
 
+	// Returns the item data with the given name.
+	UFUNCTION(BlueprintCallable)
+	FNamedStatPack GetItemFromName(FString name);
+
 	// Returns the items data table.
 	UDataTable* GetItemsData() const;
 

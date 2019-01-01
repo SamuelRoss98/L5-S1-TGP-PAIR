@@ -45,6 +45,19 @@ TArray<ACombatantPawn*> ACombatGameModeBase::GetEnemies() const
 	return EnemyCombatants;
 }
 
+// Returns the item data with the given name.
+FNamedStatPack ACombatGameModeBase::GetItemFromName(FString name)
+{
+	TArray<FNamedStatPack*> outItems;
+	ItemsDataTable->GetAllRows<FNamedStatPack>("GENERAL", outItems);
+
+	for (int i = 0; i < outItems.Num(); ++i)
+		if (outItems[i]->Name == name)
+			return *outItems[i];
+
+	return FNamedStatPack();
+}
+
 // Returns the items data table.
 UDataTable* ACombatGameModeBase::GetItemsData() const 
 {

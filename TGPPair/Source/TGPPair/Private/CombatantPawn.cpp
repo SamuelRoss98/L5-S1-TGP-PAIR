@@ -94,8 +94,9 @@ void ACombatantPawn::SetCurrentAction(FCombatAction newAction)
 
 	FString targetIndex = FString::FromInt(CurrentAction.TargetIndex);
 	FString type = FString::FromInt((int32)CurrentAction.ActionType);
+	FString dataName = newAction.ActionData.Name;
 
-	UE_LOG(LogTemp, Warning, TEXT("New action set. [Type: %s, Target: %s]"), *type, *targetIndex)
+	UE_LOG(LogTemp, Warning, TEXT("New action set. [Type: %s, Target: %s, DataName: %s]"), *type, *targetIndex, *dataName)
 }
 
 // Flag whether this combatant has taken their turn or not.
