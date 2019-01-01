@@ -27,6 +27,8 @@ public:
 	// Blueprint event called at the start of the player decision process.
 	UFUNCTION(BlueprintImplementableEvent)
 	void PlayerDecisionStart();
-	
-	
+
+	// Called by blueprint once the player has decided their action using the UI.
+	UFUNCTION(BlueprintCallable)
+	void DecisionComplete();
 };

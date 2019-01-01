@@ -73,7 +73,7 @@ void ACombatantPawn::MakeCombatDescision()
 			return;
 	}
 
-	//Controller->MakeDescision();
+	Controller->MakeDescision();
 }
 
 // Returns the NamedStatPack this character was created with.

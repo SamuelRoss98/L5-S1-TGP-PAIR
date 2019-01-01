@@ -13,7 +13,12 @@ ACombatantPawn* ACombatPlayerController::GetControlledCombatant() const
 void ACombatPlayerController::MakeDescision()
 {
 	PlayerDecisionStart();
-	UE_LOG(LogTemp, Warning, TEXT("Player Decided"))
+}
+
+// Called by blueprint once the player has decided their action using the UI.
+void ACombatPlayerController::DecisionComplete()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player decision made."))
 }
 
 

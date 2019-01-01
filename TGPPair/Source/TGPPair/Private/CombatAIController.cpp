@@ -12,7 +12,15 @@ ACombatantPawn* ACombatAIController::GetControlledCombatant() const
 // Starts the combat descision process for this controller.
 void ACombatAIController::MakeDescision()
 {
-	UE_LOG(LogTemp, Warning, TEXT("AI Decided"))
+	ACombatantPawn* OurPawn = GetControlledCombatant();
+
+	FCombatAction Action;
+
+	Action.ActionType = ECombatantActionType::Attack;
+	Action.TargetIndex = 0;
+
+	OurPawn->SetCurrentAction(Action);
+	UE_LOG(LogTemp, Warning, TEXT("AI decision made."))
 }
 
 
