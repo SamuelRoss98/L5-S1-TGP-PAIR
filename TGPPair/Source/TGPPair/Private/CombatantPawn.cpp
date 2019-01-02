@@ -222,8 +222,19 @@ void ACombatantPawn::ApplyAction()
 	ACombatantPawn* Target = GetActionTargetCombatant();
 	if (Target == nullptr)
 		return;
-
-	Target->ApplyDamage(CurrentAction.ActionData.Stats);
+	
+	switch (CurrentAction.ActionType)
+	{
+	case ECombatantActionType::Attack:
+		Target->ApplyDamage(CurrentAction.ActionData.Stats);
+		break;
+	case ECombatantActionType::Item:
+		Target->ApplyItem(CurrentAction.ActionData.Stats);
+		break;
+	default:
+		UE_LOG(LogTemp, Warning, TEXT("Attempted to apply unrecognised action type."))
+		break;
+	}
 }
 
 // Applies damage to combatant.
@@ -240,4 +251,27 @@ void ACombatantPawn::ApplyDamage(FStatPack DamageStatPack)
 
 	// Apply stat changes.
 	CurrentStats.Health -= HealthDamage;
+}
+
+// Applies an item to combatant.
+void ACombatantPawn::ApplyItem(FStatPack ItemStatPack)
+{
+	// Apply/clamp health.
+	CurrentStats.Health += ItemStatPack.Health;
+	if (CurrentStats.Health > CharacterBaseValues.Stats.Health)
+		CurrentStats.Health = CharacterBaseValues.Stats.Health;
+
+	// Apply/clamp mana.
+	CurrentStats.Mana += ItemStatPack.Mana;
+	if (CurrentStats.Mana > CharacterBaseValues.Stats.Mana)
+		CurrentStats.Mana = CharacterBaseValues.Stats.Mana;
+
+	// Other stats aren't clamped.
+	CurrentStats.Charisma += ItemStatPack.Charisma;
+	CurrentStats.Luck += ItemStatPack.Luck;
+	CurrentStats.MagicAttack += ItemStatPack.MagicAttack;
+	CurrentStats.MagicDefense += ItemStatPack.MagicDefense;
+	CurrentStats.MeleeAttack += ItemStatPack.MeleeAttack;
+	CurrentStats.MeleeDefense += ItemStatPack.MeleeDefense;
+	CurrentStats.Speed += ItemStatPack.Speed;
 }

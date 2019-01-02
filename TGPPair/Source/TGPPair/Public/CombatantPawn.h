@@ -99,6 +99,9 @@ public:
 	// Applies damage to combatant.
 	void ApplyDamage(FStatPack DamageStatPack);
 
+	// Applies an item to combatant.
+	void ApplyItem(FStatPack ItemStatPack);
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;
