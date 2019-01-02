@@ -76,6 +76,10 @@ public:
 	// Generates a description for an attack action.
 	FString GetAttackActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies);
 
+	// Returns the interaction transform of this combatant.
+	UFUNCTION(BlueprintPure)
+	FTransform GetInteractionTransform() const;
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;

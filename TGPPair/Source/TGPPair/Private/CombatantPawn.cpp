@@ -176,3 +176,12 @@ FString ACombatantPawn::GetAttackActionDescription(ACombatantPawn* Player, TArra
 	else
 		return CharacterBaseValues.Name + " attacks " + Player->GetBaseCharacter().Name;
 }
+
+// Returns the interaction transform of this combatant.
+FTransform ACombatantPawn::GetInteractionTransform() const
+{
+	if (InteractionTransform != nullptr)
+		return InteractionTransform->GetComponentTransform();
+
+	return FTransform();
+}
