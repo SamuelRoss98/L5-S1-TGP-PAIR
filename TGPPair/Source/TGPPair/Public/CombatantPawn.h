@@ -84,6 +84,10 @@ public:
 	UFUNCTION(BlueprintPure)
 	FTransform GetRestingTransform() const;
 
+	// Returns the target of the current action.
+	UFUNCTION(BlueprintPure)
+	ACombatantPawn* GetActionTargetCombatant();
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;

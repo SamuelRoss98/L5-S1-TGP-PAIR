@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 
 #include "NamedStatPack.h"
+#include "CombatAction.h"
 
 #include "CombatGameModeBase.generated.h"
 
@@ -53,6 +54,9 @@ public:
 
 	// Returns the items data table.
 	UDataTable* GetItemsData() const;
+
+	// Returns the target of a given action.
+	ACombatantPawn* GetActionTarget(bool bIsPlayer, FCombatAction Action);
 
 private:
 	// Returns a random character from the enemies data table.

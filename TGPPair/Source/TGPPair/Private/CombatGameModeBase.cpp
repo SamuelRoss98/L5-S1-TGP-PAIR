@@ -89,6 +89,15 @@ UDataTable* ACombatGameModeBase::GetItemsData() const
 	return ItemsDataTable;
 }
 
+// Returns the target of a given action.
+ACombatantPawn* ACombatGameModeBase::GetActionTarget(bool bIsPlayer, FCombatAction Action)
+{
+	if (!bIsPlayer)
+		return PlayerCombatant;
+
+	else return EnemyCombatants[Action.TargetIndex];
+}
+
 // Returns a random character from the enemies data table.
 FNamedStatPack ACombatGameModeBase::GetRandomCharacter()
 {
@@ -161,6 +170,7 @@ void ACombatGameModeBase::SpawnCombatants()
 	}
 
 	// Spawn enemies.
+	SpawnRot = FRotator(0.0f, 180.0f, 0.0f);
 	for (int i = 0; i < EnemyCount; ++i)
 	{
 		// Create the enemy combatant.

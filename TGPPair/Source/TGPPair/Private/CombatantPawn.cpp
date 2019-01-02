@@ -9,6 +9,7 @@
 #include "Engine/World.h"
 #include "InventoryComponent.h"
 #include "TGPPairGameInstance.h"
+#include "CombatGameModeBase.h"
 
 // Sets default values
 ACombatantPawn::ACombatantPawn()
@@ -192,4 +193,18 @@ FTransform ACombatantPawn::GetInteractionTransform() const
 FTransform ACombatantPawn::GetRestingTransform() const
 {
 	return OriginalLocation;
+}
+
+// Returns the target of the current action.
+ACombatantPawn* ACombatantPawn::GetActionTargetCombatant()
+{
+	if (CurrentAction.ActionType == ECombatantActionType::Item)
+		return this;
+
+	ACombatGameModeBase* CombatGameMode = nullptr;
+	CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (CombatGameMode == nullptr)
+		return nullptr;
+
+	return CombatGameMode->GetActionTarget(bIsPlayer, CurrentAction);
 }
