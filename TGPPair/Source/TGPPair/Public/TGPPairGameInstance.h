@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+
+#include "StatPack.h"
+
 #include "TGPPairGameInstance.generated.h"
 
 /**
@@ -23,7 +26,14 @@ public:
 	UFUNCTION(BlueprintPure)
 	FString GetPlayerName() const;
 
+	// Getter for the players current base stats.
+	UFUNCTION(BlueprintPure)
+	FStatPack GetPlayerCurrentBaseStats() const;
+
 private:
 	// Players name.
-	FString PlayerName = "Rain";
+	FString PlayerName = "Sam";
+
+	// Player levels.
+	FStatPack PlayerLevels = { 100, 50, 1, 1, 1, 1, 1, 1, 1, 1 };
 };

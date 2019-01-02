@@ -14,4 +14,9 @@ FString UTGPPairGameInstance::GetPlayerName() const
 	return PlayerName;
 }
 
+// Getter for the players current base stats.
+FStatPack UTGPPairGameInstance::GetPlayerCurrentBaseStats() const
+{
+	return PlayerLevels;
+}
 

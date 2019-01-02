@@ -22,6 +22,19 @@ public:
 		Value(0)
 	{}
 
+	FStatPack(int health, int mana, int meleeAtk, int meleeDef, int magicAtk, int magicDef, int speed, int luck, int charisma, int val) :
+		Health(health),
+		Mana(mana),
+		MeleeAttack(meleeAtk),
+		MagicAttack(magicAtk),
+		MeleeDefense(meleeDef),
+		MagicDefense(magicDef),
+		Speed(speed),
+		Luck(luck),
+		Charisma(charisma),
+		Value(val)
+	{}
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int Health;
 

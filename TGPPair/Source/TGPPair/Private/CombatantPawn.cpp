@@ -68,7 +68,11 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 		UTGPPairGameInstance* TGPGI = nullptr;
 		TGPGI = Cast<UTGPPairGameInstance>(GetGameInstance());
 		if (TGPGI != nullptr)
+		{
 			CharacterBaseValues.Name = TGPGI->GetPlayerName();
+			CharacterBaseValues.Stats = TGPGI->GetPlayerCurrentBaseStats();
+			CurrentStats = CharacterBaseValues.Stats;
+		}
 	}
 
 	Inventory->AddItem("Health Potion", 2);
