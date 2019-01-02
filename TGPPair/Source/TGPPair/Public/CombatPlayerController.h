@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 
+#include "NamedStatPack.h"
 #include "CombatDecisionInterface.h"
 
 #include "CombatPlayerController.generated.h"
@@ -34,6 +35,10 @@ public:
 	// Called by blueprint once the player has decided their action using the UI.
 	UFUNCTION(BlueprintCallable)
 	void DecisionComplete();
+
+	// Returns true if a combatant tooltip should be displayed, outData contains the hit combatants NamedStatPack.
+	UFUNCTION(BlueprintCallable)
+	bool DisplayCombatantTooltip(UPARAM(ref)FNamedStatPack& outData);
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

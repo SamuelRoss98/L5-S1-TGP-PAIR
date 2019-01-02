@@ -67,6 +67,9 @@ public:
 	// Returns true if this combatant has taken their turn.
 	bool GetTurnTaken() const;
 
+	// Returns true if this combatant is the player.
+	bool IsPlayer() const;
+
 	// Returns the combat log description of the current action.
 	FString GetActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies);
 

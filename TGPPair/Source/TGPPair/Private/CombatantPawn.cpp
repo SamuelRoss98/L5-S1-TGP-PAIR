@@ -135,6 +135,12 @@ bool ACombatantPawn::GetTurnTaken() const
 	return bTurnTaken;
 }
 
+// Returns true if this combatant is the player.
+bool ACombatantPawn::IsPlayer() const
+{
+	return bIsPlayer;
+}
+
 // Returns the combat log description of the current action.
 FString ACombatantPawn::GetActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies)
 {

@@ -31,4 +31,30 @@ void ACombatPlayerController::DecisionComplete()
 		CombatGameMode->SimulateNextAction();
 }
 
+// Returns true if a combatant tooltip should be displayed, outData contains the hit combatants NamedStatPack.
+bool ACombatPlayerController::DisplayCombatantTooltip(FNamedStatPack& outData)
+{
+	FHitResult Hit;
+
+	// Line trace to find combatants.
+	if (!GetHitResultUnderCursor(ECC_Visibility, true, Hit))
+		return false;
+
+	// Attempt to cast hit actor to combatant.
+	ACombatantPawn* HitCombatant = nullptr;
+	HitCombatant = Cast<ACombatantPawn>(Hit.Actor);
+	if (HitCombatant == nullptr)
+		return false;
+
+	// Don't display for player.
+	if (HitCombatant->IsPlayer())
+		return false;
+
+	outData = FNamedStatPack();
+	outData.Name = HitCombatant->GetBaseCharacter().Name;
+	outData.Stats = HitCombatant->GetStats();
+
+	return true;
+}
+
 
