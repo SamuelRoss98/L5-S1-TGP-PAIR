@@ -121,6 +121,7 @@ FStatPack ACombatantPawn::GetStats() const
 	return CurrentStats;
 }
 
+// Setter for current action.
 void ACombatantPawn::SetCurrentAction(FCombatAction newAction)
 {
 	CurrentAction = newAction;
@@ -128,6 +129,12 @@ void ACombatantPawn::SetCurrentAction(FCombatAction newAction)
 	FString targetIndex = FString::FromInt(CurrentAction.TargetIndex);
 	FString type = FString::FromInt((int32)CurrentAction.ActionType);
 	FString dataName = newAction.ActionData.Name;
+}
+
+// Getter for current action.
+FCombatAction ACombatantPawn::GetCurrentAction() const
+{
+	return CurrentAction;
 }
 
 // Flag whether this combatant has taken their turn or not.

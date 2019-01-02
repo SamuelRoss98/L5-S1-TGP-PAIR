@@ -57,9 +57,13 @@ public:
 	UFUNCTION(BlueprintPure)
 	FStatPack GetStats() const;
 
-	// Sets the current actions.
+	// Setter for current action.
 	UFUNCTION(BlueprintCallable)
 	void SetCurrentAction(FCombatAction newAction);
+
+	// Getter for current action.
+	UFUNCTION(BlueprintPure)
+	FCombatAction GetCurrentAction() const;
 
 	// Flag whether this combatant has taken their turn or not.
 	void SetTurnTaken(bool setting);
