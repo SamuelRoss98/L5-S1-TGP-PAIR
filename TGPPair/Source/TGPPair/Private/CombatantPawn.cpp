@@ -8,6 +8,7 @@
 #include "CombatGameModeBase.h"
 #include "Engine/World.h"
 #include "InventoryComponent.h"
+#include "TGPPairGameInstance.h"
 
 // Sets default values
 ACombatantPawn::ACombatantPawn()
@@ -50,21 +51,31 @@ void ACombatantPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatDecisionInterface * CombatantController)
 {
 	Controller = CombatantController;
+	bIsPlayer = bPlayer;
+	CharacterBaseValues = Character;
+	CurrentStats = CharacterBaseValues.Stats;
+
+	// Check the controller.
 	if (Controller == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Invalid controller passed to ACombatantPawn on initialization"))
 			return false;
 	}
-
-	bIsPlayer = bPlayer;
-
-	CharacterBaseValues = Character;
-	CurrentStats = CharacterBaseValues.Stats;
+	
+	// If we are the player grab our name from the game instance.
+	if (bIsPlayer)
+	{
+		UTGPPairGameInstance* TGPGI = nullptr;
+		TGPGI = Cast<UTGPPairGameInstance>(GetGameInstance());
+		if (TGPGI != nullptr)
+			CharacterBaseValues.Name = TGPGI->GetPlayerName();
+	}
 
 	Inventory->AddItem("Health Potion", 2);
 	Inventory->AddItem("Health Potion", 1);
 	Inventory->AddItem("Mana Potion", 2);
 	Inventory->AddItem("Super Mana Potion", 1);
+
 	return true;
 }
 
