@@ -17,6 +17,7 @@ void ACombatAIController::MakeDescision()
 	FCombatAction Action;
 
 	Action.ActionType = ECombatantActionType::Attack;
+	Action.ActionData.Stats = GetControlledCombatant()->GetStats();
 	Action.TargetIndex = 0;
 
 	OurPawn->SetCurrentAction(Action);

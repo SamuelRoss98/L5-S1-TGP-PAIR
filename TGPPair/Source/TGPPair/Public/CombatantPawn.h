@@ -92,6 +92,13 @@ public:
 	UFUNCTION(BlueprintPure)
 	ACombatantPawn* GetActionTargetCombatant();
 
+	// Applies the effect to an action to this combatants stats.
+	UFUNCTION(BlueprintCallable)
+	void ApplyAction();
+
+	// Applies damage to combatant.
+	void ApplyDamage(FStatPack DamageStatPack);
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;

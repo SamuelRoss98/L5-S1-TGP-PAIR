@@ -215,3 +215,29 @@ ACombatantPawn* ACombatantPawn::GetActionTargetCombatant()
 
 	return CombatGameMode->GetActionTarget(bIsPlayer, CurrentAction);
 }
+
+// Applies the effect to an action to this combatants stats.
+void ACombatantPawn::ApplyAction()
+{
+	ACombatantPawn* Target = GetActionTargetCombatant();
+	if (Target == nullptr)
+		return;
+
+	Target->ApplyDamage(CurrentAction.ActionData.Stats);
+}
+
+// Applies damage to combatant.
+void ACombatantPawn::ApplyDamage(FStatPack DamageStatPack)
+{
+	// Calculate health damage.
+	int MeleeDamage = FMath::Clamp(DamageStatPack.MeleeAttack - CurrentStats.MeleeDefense, 0, DamageStatPack.MeleeAttack);
+	int MagicDamage = FMath::Clamp(DamageStatPack.MagicAttack - CurrentStats.MagicDefense, 0, DamageStatPack.MagicAttack);
+	int HealthDamage = MeleeDamage + MagicDamage;
+
+	FString MeleeStr = FString::FromInt(MeleeDamage);
+	FString MagicStr = FString::FromInt(MagicDamage);
+	UE_LOG(LogTemp, Error, TEXT("Melee damage: %s, Magic damage: %s."), *MeleeStr, *MagicStr)
+
+	// Apply stat changes.
+	CurrentStats.Health -= HealthDamage;
+}
