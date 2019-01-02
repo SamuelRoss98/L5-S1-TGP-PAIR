@@ -170,9 +170,9 @@ FString ACombatantPawn::GetAttackActionDescription(ACombatantPawn* Player, TArra
 {
 	// Player attacking enemies.
 	if (bIsPlayer)
-		return "The player attacks " + Enemies[CurrentAction.TargetIndex]->GetBaseCharacter().Name + ".";
+		return Player->GetBaseCharacter().Name + " attacks " + Enemies[CurrentAction.TargetIndex]->GetBaseCharacter().Name + ".";
 
 	// Enemies attacking player.
 	else
-		return CharacterBaseValues.Name + " attacks the player.";
+		return CharacterBaseValues.Name + " attacks " + Player->GetBaseCharacter().Name;
 }
