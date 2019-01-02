@@ -80,6 +80,10 @@ public:
 	UFUNCTION(BlueprintPure)
 	FTransform GetInteractionTransform() const;
 
+	// Returns the resting location/rotation of this combatant.
+	UFUNCTION(BlueprintPure)
+	FTransform GetRestingTransform() const;
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;
@@ -104,6 +108,9 @@ protected:
 
 	// Currently set combat action.
 	FCombatAction CurrentAction;
+
+	// Resting position/location of the combatant.
+	FTransform OriginalLocation;
 
 	// True if the combatant has taken their turn.
 	bool bTurnTaken = false;

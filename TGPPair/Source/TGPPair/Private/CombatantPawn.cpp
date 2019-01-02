@@ -55,6 +55,8 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 	CharacterBaseValues = Character;
 	CurrentStats = CharacterBaseValues.Stats;
 
+	OriginalLocation = GetActorTransform();
+
 	// Check the controller.
 	if (Controller == nullptr)
 	{
@@ -184,4 +186,10 @@ FTransform ACombatantPawn::GetInteractionTransform() const
 		return InteractionTransform->GetComponentTransform();
 
 	return FTransform();
+}
+
+// Returns the resting location/rotation of this combatant.
+FTransform ACombatantPawn::GetRestingTransform() const
+{
+	return OriginalLocation;
 }
