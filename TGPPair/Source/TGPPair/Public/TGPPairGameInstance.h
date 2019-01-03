@@ -37,6 +37,18 @@ public:
 	UFUNCTION(BlueprintPure)
 	int GetExpBetweenLevels(int a, int b);
 
+	// Returns the amount of exp needed to level up.
+	UFUNCTION(BlueprintPure)
+	int GetExpToNextLevel();
+
+	// Returns how much experience the player has at their current level.
+	UFUNCTION(BlueprintPure)
+	int GetCurrentLevelTotalExp();
+
+	// Returns the players current level.
+	UFUNCTION(BlueprintPure)
+	int GetPlayerLevel();
+
 private:
 	// Function used to calculate exp between levels.
 	int ExpFunction(int level);
@@ -55,5 +67,5 @@ private:
 	int CurrentLevel = 1;
 
 	// Total gained since last level up.
-	int ExpGainedThisLevel = 0;
+	int CurrentLevelExp = 0;
 };

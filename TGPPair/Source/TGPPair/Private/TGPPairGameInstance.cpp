@@ -35,6 +35,24 @@ int UTGPPairGameInstance::GetExpBetweenLevels(int a, int b)
 	return ExpFunction(b) - ExpFunction(a);
 }
 
+// Returns the amount of exp needed to level up.
+int UTGPPairGameInstance::GetExpToNextLevel()
+{
+	return GetExpBetweenLevels(CurrentLevel, CurrentLevel + 1) - CurrentLevelExp;
+}
+
+// Returns how much experience the player has at their current level.
+int UTGPPairGameInstance::GetCurrentLevelTotalExp()
+{
+	return CurrentLevelExp;
+}
+
+// Returns the players current level.
+int UTGPPairGameInstance::GetPlayerLevel()
+{
+	return CurrentLevel;
+}
+
 // Function used to calculate exp between levels.
 int UTGPPairGameInstance::ExpFunction(int level)
 {
