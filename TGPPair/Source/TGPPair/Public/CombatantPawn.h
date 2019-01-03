@@ -75,6 +75,7 @@ public:
 	bool IsPlayer() const;
 
 	// Returns true if this combatant is dead.
+	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
 	// Returns the combat log description of the current action.
@@ -109,6 +110,10 @@ protected:
 	// Loads some basic info UI for this combatant.
 	UFUNCTION(BlueprintImplementableEvent)
 	void LoadEnemyCombatantUI();
+
+	// Called on combatant death.
+	UFUNCTION(BlueprintImplementableEvent)
+	void DeathEvent();
 
 private:
 	// Checks if this combatants has run out of health.

@@ -312,4 +312,5 @@ bool ACombatantPawn::CheckForDeath()
 void ACombatantPawn::Death()
 {
 	bIsDead = true;
+	DeathEvent();
 }
