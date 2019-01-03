@@ -64,7 +64,11 @@ public:
 protected:
 	// Blueprint event to load/display the defeat UI.
 	UFUNCTION(BlueprintImplementableEvent)
-	void LoadEndOfBattleUI(bool bVictory);
+	void LoadEndOfBattleUI(bool bVictory, int ExpEarned);
+
+private:
+	// Returns the amount of exp earned from this battle.
+	int CalculateExpEarned() const;
 
 private:
 	// Called regardless of victory or loss to complete shared tasks (hiding battle UI etc.).

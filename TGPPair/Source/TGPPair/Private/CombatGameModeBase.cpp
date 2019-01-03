@@ -109,6 +109,17 @@ ACombatantPawn* ACombatGameModeBase::GetActionTarget(bool bIsPlayer, FCombatActi
 	else return EnemyCombatants[Action.TargetIndex];
 }
 
+// Returns the amount of exp earned from this battle.
+int ACombatGameModeBase::CalculateExpEarned() const
+{
+	int expEarned = 0;
+	for (int i = 0; i < EnemyCombatants.Num(); ++i)
+		if (EnemyCombatants[i]->IsDead())
+			expEarned += EnemyCombatants[i]->GetBaseCharacter().Stats.Value;
+
+	return expEarned;
+}
+
 // Called to check if the battle is complete.
 void ACombatGameModeBase::CheckForBattleFinish()
 {
@@ -132,6 +143,8 @@ void ACombatGameModeBase::HandleFinish()
 {
 	bBattleOver = true;
 
+	// TODO: Apply exp.
+
 	// Notify player controller the battle is over.
 	ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (CombatPlayerController != nullptr)
@@ -148,14 +161,14 @@ void ACombatGameModeBase::HandleFinishVictory()
 	if (GameInst != nullptr)
 		GameInst->IncrementWonBattles();
 
-	LoadEndOfBattleUI(true);
+	LoadEndOfBattleUI(true, CalculateExpEarned());
 }
 
 // Called when the battle has finished with player loss.
 void ACombatGameModeBase::HandleFinishLoss()
 {
 	HandleFinish();
-	LoadEndOfBattleUI(false);
+	LoadEndOfBattleUI(false, CalculateExpEarned());
 }
 
 
