@@ -26,6 +26,7 @@ void ACombatPlayerController::MakeDescision()
 void ACombatPlayerController::DecisionComplete()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Player decision made."))
+
 	ACombatGameModeBase* CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (CombatGameMode != nullptr)
 		CombatGameMode->SimulateNextAction();

@@ -102,6 +102,13 @@ public:
 	// Applies an item to combatant.
 	void ApplyItem(FStatPack ItemStatPack);
 
+private:
+	// Checks if this combatants has run out of health.
+	bool CheckForDeath();
+
+	// Handles combatant death.
+	void Death();
+
 protected:
 	// Controller for this combatant.
 	ICombatDecisionInterface * Controller = nullptr;
@@ -135,4 +142,7 @@ protected:
 
 	// True if this combatant is the player.
 	bool bIsPlayer = false;
+
+	// True if this combatant is dead.
+	bool bIsDead = false;
 };

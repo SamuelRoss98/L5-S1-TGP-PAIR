@@ -251,6 +251,7 @@ void ACombatantPawn::ApplyDamage(FStatPack DamageStatPack)
 
 	// Apply stat changes.
 	CurrentStats.Health -= HealthDamage;
+	CheckForDeath();
 }
 
 // Applies an item to combatant.
@@ -260,6 +261,10 @@ void ACombatantPawn::ApplyItem(FStatPack ItemStatPack)
 	CurrentStats.Health += ItemStatPack.Health;
 	if (CurrentStats.Health > CharacterBaseValues.Stats.Health)
 		CurrentStats.Health = CharacterBaseValues.Stats.Health;
+	
+	// Potentially damaging items so check for death.
+	if (CheckForDeath())
+		return;
 
 	// Apply/clamp mana.
 	CurrentStats.Mana += ItemStatPack.Mana;
@@ -274,4 +279,23 @@ void ACombatantPawn::ApplyItem(FStatPack ItemStatPack)
 	CurrentStats.MeleeAttack += ItemStatPack.MeleeAttack;
 	CurrentStats.MeleeDefense += ItemStatPack.MeleeDefense;
 	CurrentStats.Speed += ItemStatPack.Speed;
+}
+
+// Checks if this combatants has run out of health.
+bool ACombatantPawn::CheckForDeath()
+{
+	if (CurrentStats.Health <= 0)
+	{
+		CurrentStats.Health = 0;
+		Death();
+		return true;
+	}
+
+	return false;
+}
+
+// Handles combatant death.
+void ACombatantPawn::Death()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Combatant death"))
 }

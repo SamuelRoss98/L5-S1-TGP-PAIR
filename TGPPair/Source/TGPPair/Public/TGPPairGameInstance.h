@@ -35,5 +35,5 @@ private:
 	FString PlayerName = "Sam";
 
 	// Player levels.
-	FStatPack PlayerLevels = { 100, 50, 1, 1, 1, 1, 1, 1, 1, 1 };
+	FStatPack PlayerLevels = { 100, 50, 10, 0, 1, 1, 4, 1, 1, 1 };
 };
