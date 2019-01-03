@@ -143,7 +143,10 @@ void ACombatGameModeBase::HandleFinish()
 {
 	bBattleOver = true;
 
-	// TODO: Apply exp.
+	// Apply exp.
+	UTGPPairGameInstance* GameInst = Cast<UTGPPairGameInstance>(GetGameInstance());
+	if (GameInst != nullptr)
+		GameInst->GainExp(CalculateExpEarned());
 
 	// Notify player controller the battle is over.
 	ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());

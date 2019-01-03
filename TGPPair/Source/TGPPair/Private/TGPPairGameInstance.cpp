@@ -26,6 +26,30 @@ void UTGPPairGameInstance::IncrementWonBattles()
 	TotalBattlesWon++;
 }
 
+// Called to give exp to the player.
+void UTGPPairGameInstance::GainExp(int Amount)
+{
+	//FString print = FString::FromInt(GetExpToNextLevel());
+	//UE_LOG(LogTemp, Error, TEXT("Exp to next level: %s"), *print)
+
+	if (Amount < GetExpToNextLevel())
+		CurrentLevelExp += Amount;
+
+	else if (Amount == GetExpToNextLevel())
+	{
+		CurrentLevel++;
+		CurrentLevelExp = 0;
+	}
+
+	else
+	{
+		Amount -= GetExpToNextLevel();
+		CurrentLevel++;
+		CurrentLevelExp = 0;
+		GainExp(Amount);
+	}
+}
+
 // Returns the amount of exp between two levels [a < b].
 int UTGPPairGameInstance::GetExpBetweenLevels(int a, int b)
 {
@@ -56,5 +80,6 @@ int UTGPPairGameInstance::GetPlayerLevel()
 // Function used to calculate exp between levels.
 int UTGPPairGameInstance::ExpFunction(int level)
 {
-	return 100 + (25 * (int)(FMath::Pow((float)level, 1.25f)));
+	float exp = 100.0f + (25.0f * FMath::Pow((float)level, 1.64f));
+	return (int)exp;
 }

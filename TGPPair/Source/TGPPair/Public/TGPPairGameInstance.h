@@ -33,6 +33,9 @@ public:
 	// Increment total battles won.
 	void IncrementWonBattles();
 
+	// Called to give exp to the player.
+	void GainExp(int Amount);
+
 	// Returns the amount of exp between two levels [a < b].
 	UFUNCTION(BlueprintPure)
 	int GetExpBetweenLevels(int a, int b);
