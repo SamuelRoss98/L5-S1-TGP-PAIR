@@ -58,7 +58,16 @@ public:
 	// Returns the target of a given action.
 	ACombatantPawn* GetActionTarget(bool bIsPlayer, FCombatAction Action);
 
+	// Called to check if the battle is complete.
+	void CheckForBattleFinish();
+
 private:
+	// Called when the battle has finished with player victory.
+	void HandleFinishVictory();
+
+	// Called when the battle has finished with player loss.
+	void HandleFinishLoss();
+
 	// Returns a random character from the enemies data table.
 	FNamedStatPack GetRandomCharacter();
 
@@ -101,4 +110,7 @@ protected:
 	// Enemy data.
 	UPROPERTY(EditAnywhere)
 	UDataTable* EnemiesDataTable;
+
+	// True if the battle is over.
+	bool bBattleOver = false;
 };

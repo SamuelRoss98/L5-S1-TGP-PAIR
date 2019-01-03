@@ -74,6 +74,9 @@ public:
 	// Returns true if this combatant is the player.
 	bool IsPlayer() const;
 
+	// Returns true if this combatant is dead.
+	bool IsDead() const;
+
 	// Returns the combat log description of the current action.
 	FString GetActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies);
 

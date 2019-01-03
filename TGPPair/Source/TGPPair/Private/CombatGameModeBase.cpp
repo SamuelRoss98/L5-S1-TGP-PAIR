@@ -44,23 +44,28 @@ void ACombatGameModeBase::ResetForNewRound()
 // Called once all decisions are made to start simulating the actions.
 void ACombatGameModeBase::SimulateNextAction()
 {
-	if (IsEndOfRound())
-	{
-		ResetForNewRound();
-		return;
-	}
+	CheckForBattleFinish();
 
-	ACombatantPawn* NextToAct = GetNextCombatantToAct();
-	if (NextToAct != nullptr)
+	if (!bBattleOver)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Called action start."))
-		// Update the combat log to reflect the next action.
-		FString ActionDesc = NextToAct->GetActionDescription(PlayerCombatant, EnemyCombatants);
-		ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
-		if (CombatPlayerController != nullptr)
-			CombatPlayerController->UpdateCombatLogText(ActionDesc);
+		if (IsEndOfRound())
+		{
+			ResetForNewRound();
+			return;
+		}
 
-		NextToAct->TakeTurn();
+		ACombatantPawn* NextToAct = GetNextCombatantToAct();
+		if (NextToAct != nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Called action start."))
+				// Update the combat log to reflect the next action.
+				FString ActionDesc = NextToAct->GetActionDescription(PlayerCombatant, EnemyCombatants);
+			ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
+			if (CombatPlayerController != nullptr)
+				CombatPlayerController->UpdateCombatLogText(ActionDesc);
+
+			NextToAct->TakeTurn();
+		}
 	}
 }
 
@@ -97,6 +102,39 @@ ACombatantPawn* ACombatGameModeBase::GetActionTarget(bool bIsPlayer, FCombatActi
 
 	else return EnemyCombatants[Action.TargetIndex];
 }
+
+// Called to check if the battle is complete.
+void ACombatGameModeBase::CheckForBattleFinish()
+{
+	// Player is dead, loss.
+	if (PlayerCombatant->IsDead())
+		return HandleFinishLoss();
+
+	// Check for any living enemy.
+	bool bLivingEnemy = false;
+	for (int i = 0; i < EnemyCombatants.Num(); ++i)
+		if (!EnemyCombatants[i]->IsDead())
+			bLivingEnemy = true;
+
+	// No living enemies, player won.
+	if (!bLivingEnemy)
+		return HandleFinishVictory();
+}
+
+// Called when the battle has finished with player victory.
+void ACombatGameModeBase::HandleFinishVictory()
+{
+	bBattleOver = true;
+	UE_LOG(LogTemp, Warning, TEXT("Player victory!"))
+}
+
+// Called when the battle has finished with player loss.
+void ACombatGameModeBase::HandleFinishLoss()
+{
+	bBattleOver = true;
+	UE_LOG(LogTemp, Warning, TEXT("Player defeat!"))
+}
+
 
 // Returns a random character from the enemies data table.
 FNamedStatPack ACombatGameModeBase::GetRandomCharacter()

@@ -155,6 +155,12 @@ bool ACombatantPawn::IsPlayer() const
 	return bIsPlayer;
 }
 
+// Returns true if this combatant is dead.
+bool ACombatantPawn::IsDead() const
+{
+	return bIsDead;
+}
+
 // Returns the combat log description of the current action.
 FString ACombatantPawn::GetActionDescription(ACombatantPawn* Player, TArray<ACombatantPawn*> Enemies)
 {
@@ -297,5 +303,5 @@ bool ACombatantPawn::CheckForDeath()
 // Handles combatant death.
 void ACombatantPawn::Death()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Combatant death"))
+	bIsDead = true;
 }
