@@ -30,10 +30,30 @@ public:
 	UFUNCTION(BlueprintPure)
 	FStatPack GetPlayerCurrentBaseStats() const;
 
+	// Increment total battles won.
+	void IncrementWonBattles();
+
+	// Returns the amount of exp between two levels [a < b].
+	UFUNCTION(BlueprintPure)
+	int GetExpBetweenLevels(int a, int b);
+
+private:
+	// Function used to calculate exp between levels.
+	int ExpFunction(int level);
+
 private:
 	// Players name.
 	FString PlayerName = "Sam";
 
 	// Player levels.
 	FStatPack PlayerLevels = { 100, 50, 15, 0, 1, 1, 4, 1, 1, 1 };
+
+	// Counts total number of battles the player has won.
+	int TotalBattlesWon;
+
+	// Players current level.
+	int CurrentLevel = 1;
+
+	// Total gained since last level up.
+	int ExpGainedThisLevel = 0;
 };

@@ -61,6 +61,11 @@ public:
 	// Called to check if the battle is complete.
 	void CheckForBattleFinish();
 
+protected:
+	// Blueprint event to load/display the defeat UI.
+	UFUNCTION(BlueprintImplementableEvent)
+	void LoadEndOfBattleUI(bool bVictory);
+
 private:
 	// Called regardless of victory or loss to complete shared tasks (hiding battle UI etc.).
 	void HandleFinish();

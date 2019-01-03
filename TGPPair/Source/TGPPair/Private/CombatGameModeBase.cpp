@@ -7,6 +7,7 @@
 #include "CombatDecisionInterface.h"
 #include "CombatPlayerController.h"
 #include "CombatAIController.h"
+#include "TGPPairGameInstance.h"
 
 // Called when the game starts or when spawned
 void ACombatGameModeBase::BeginPlay()
@@ -141,14 +142,20 @@ void ACombatGameModeBase::HandleFinish()
 void ACombatGameModeBase::HandleFinishVictory()
 {
 	HandleFinish();
-	UE_LOG(LogTemp, Warning, TEXT("Player victory!"))
+
+	// Update won battles counter.
+	UTGPPairGameInstance* GameInst = Cast<UTGPPairGameInstance>(GetGameInstance());
+	if (GameInst != nullptr)
+		GameInst->IncrementWonBattles();
+
+	LoadEndOfBattleUI(true);
 }
 
 // Called when the battle has finished with player loss.
 void ACombatGameModeBase::HandleFinishLoss()
 {
 	HandleFinish();
-	UE_LOG(LogTemp, Warning, TEXT("Player defeat!"))
+	LoadEndOfBattleUI(false);
 }
 
 

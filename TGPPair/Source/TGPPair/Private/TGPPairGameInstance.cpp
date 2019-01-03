@@ -20,3 +20,23 @@ FStatPack UTGPPairGameInstance::GetPlayerCurrentBaseStats() const
 	return PlayerLevels;
 }
 
+// Increment total battles won.
+void UTGPPairGameInstance::IncrementWonBattles()
+{
+	TotalBattlesWon++;
+}
+
+// Returns the amount of exp between two levels [a < b].
+int UTGPPairGameInstance::GetExpBetweenLevels(int a, int b)
+{
+	if (a >= b)
+		return 0;
+
+	return ExpFunction(b) - ExpFunction(a);
+}
+
+// Function used to calculate exp between levels.
+int UTGPPairGameInstance::ExpFunction(int level)
+{
+	return 100 + (25 * (int)(FMath::Pow((float)level, 1.25f)));
+}
