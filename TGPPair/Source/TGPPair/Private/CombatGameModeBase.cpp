@@ -121,17 +121,28 @@ void ACombatGameModeBase::CheckForBattleFinish()
 		return HandleFinishVictory();
 }
 
+// Called regardless of victory or loss to complete shared tasks (hiding battle UI etc.).
+void ACombatGameModeBase::HandleFinish()
+{
+	bBattleOver = true;
+
+	// Notify player controller the battle is over.
+	ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (CombatPlayerController != nullptr)
+		CombatPlayerController->EndOfBattle();
+}
+
 // Called when the battle has finished with player victory.
 void ACombatGameModeBase::HandleFinishVictory()
 {
-	bBattleOver = true;
+	HandleFinish();
 	UE_LOG(LogTemp, Warning, TEXT("Player victory!"))
 }
 
 // Called when the battle has finished with player loss.
 void ACombatGameModeBase::HandleFinishLoss()
 {
-	bBattleOver = true;
+	HandleFinish();
 	UE_LOG(LogTemp, Warning, TEXT("Player defeat!"))
 }
 

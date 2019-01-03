@@ -62,6 +62,9 @@ public:
 	void CheckForBattleFinish();
 
 private:
+	// Called regardless of victory or loss to complete shared tasks (hiding battle UI etc.).
+	void HandleFinish();
+
 	// Called when the battle has finished with player victory.
 	void HandleFinishVictory();
 

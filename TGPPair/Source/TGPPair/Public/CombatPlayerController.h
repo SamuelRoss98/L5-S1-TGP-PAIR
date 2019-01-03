@@ -32,6 +32,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void PlayerDecisionStart();
 
+	// Blueprint event called when the battle is over.
+	UFUNCTION(BlueprintImplementableEvent)
+	void EndOfBattle();
+
 	// Called by blueprint once the player has decided their action using the UI.
 	UFUNCTION(BlueprintCallable)
 	void DecisionComplete();
