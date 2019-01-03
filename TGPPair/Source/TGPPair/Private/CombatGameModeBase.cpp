@@ -65,7 +65,10 @@ void ACombatGameModeBase::SimulateNextAction()
 				if (CombatPlayerController != nullptr)
 					CombatPlayerController->UpdateCombatLogText(ActionDesc);
 
-				NextToAct->TakeTurn();
+				if (NextToAct->IsDead())
+					NextToAct->EndTurn();
+				else
+					NextToAct->TakeTurn();
 			}
 		}
 	}
