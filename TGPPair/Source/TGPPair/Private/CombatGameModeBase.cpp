@@ -57,14 +57,22 @@ void ACombatGameModeBase::SimulateNextAction()
 		ACombatantPawn* NextToAct = GetNextCombatantToAct();
 		if (NextToAct != nullptr)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Called action start."))
+			if (NextToAct->IsDead())
+			{
+				NextToAct->SetTurnTaken(true);
+				SimulateNextAction();
+			}
+
+			if (!NextToAct->GetTurnTaken())
+			{
 				// Update the combat log to reflect the next action.
 				FString ActionDesc = NextToAct->GetActionDescription(PlayerCombatant, EnemyCombatants);
-			ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
-			if (CombatPlayerController != nullptr)
-				CombatPlayerController->UpdateCombatLogText(ActionDesc);
+				ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());
+				if (CombatPlayerController != nullptr)
+					CombatPlayerController->UpdateCombatLogText(ActionDesc);
 
-			NextToAct->TakeTurn();
+				NextToAct->TakeTurn();
+			}
 		}
 	}
 }

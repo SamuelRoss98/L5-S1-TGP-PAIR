@@ -27,6 +27,15 @@ void ACombatPlayerController::DecisionComplete()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Player decision made."))
 
+	// Hack-y way to get player damage working until named attacks/spells are implemented.
+	FCombatAction temp = GetControlledCombatant()->GetCurrentAction();
+	if (temp.ActionType == ECombatantActionType::Attack)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hack-y called"))
+		temp.ActionData.Stats.MeleeAttack = GetControlledCombatant()->GetStats().MeleeAttack;
+		GetControlledCombatant()->SetCurrentAction(temp);
+	}
+
 	ACombatGameModeBase* CombatGameMode = Cast<ACombatGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (CombatGameMode != nullptr)
 		CombatGameMode->SimulateNextAction();

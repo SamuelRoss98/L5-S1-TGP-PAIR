@@ -75,6 +75,8 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 			CharacterBaseValues.Name = TGPGI->GetPlayerName();
 			CharacterBaseValues.Stats = TGPGI->GetPlayerCurrentBaseStats();
 			CurrentStats = CharacterBaseValues.Stats;
+			FString dmg = FString::FromInt(CurrentStats.MeleeAttack);
+			UE_LOG(LogTemp, Error, TEXT("Player melee damage: %s"), *dmg)
 		}
 	}
 
