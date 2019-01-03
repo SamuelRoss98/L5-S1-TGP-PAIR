@@ -105,6 +105,11 @@ public:
 	// Applies an item to combatant.
 	void ApplyItem(FStatPack ItemStatPack);
 
+protected:
+	// Loads some basic info UI for this combatant.
+	UFUNCTION(BlueprintImplementableEvent)
+	void LoadEnemyCombatantUI();
+
 private:
 	// Checks if this combatants has run out of health.
 	bool CheckForDeath();

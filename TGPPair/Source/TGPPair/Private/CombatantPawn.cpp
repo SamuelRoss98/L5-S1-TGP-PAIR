@@ -78,6 +78,12 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 		}
 	}
 
+	// Enemy only.
+	else
+	{
+		LoadEnemyCombatantUI();
+	}
+
 	Inventory->AddItem("Health Potion", 2);
 	Inventory->AddItem("Health Potion", 1);
 	Inventory->AddItem("Mana Potion", 2);
