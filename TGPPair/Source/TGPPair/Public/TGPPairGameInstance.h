@@ -20,7 +20,11 @@ class TGPPAIR_API UTGPPairGameInstance : public UGameInstance
 public:
 	// Saves the game.
 	UFUNCTION(BlueprintCallable)
-	void Save() const;
+	void SaveGame() const;
+
+	// Loads a save game.
+	UFUNCTION(BlueprintCallable)
+	void LoadSaveGame();
 
 	// Setter for player name.
 	UFUNCTION(BlueprintCallable)

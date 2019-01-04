@@ -6,12 +6,12 @@
 #include "Engine/Classes/Kismet/GameplayStatics.h"
 
 // Saves the game.
-void UTGPPairGameInstance::Save() const
+void UTGPPairGameInstance::SaveGame() const
 {
 	UTGPPairSaveGame* SaveInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::CreateSaveGameObject(UTGPPairSaveGame::StaticClass()));
 	if (SaveInstance == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Unable to save game, save instance was nullptr"))
+		UE_LOG(LogTemp, Error, TEXT("Unable to save game, UTGPPairSaveGame instance was nullptr"))
 		return;
 	}
 
@@ -23,6 +23,25 @@ void UTGPPairGameInstance::Save() const
 	SaveInstance->TotalBattlesWon = TotalBattlesWon;
 
 	UGameplayStatics::SaveGameToSlot(SaveInstance, SaveInstance->SaveSlotName, SaveInstance->UserID);
+}
+
+// Loads a saved game.
+void UTGPPairGameInstance::LoadSaveGame()
+{
+	UTGPPairSaveGame* LoadInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::CreateSaveGameObject(UTGPPairSaveGame::StaticClass()));
+	if (LoadInstance == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Unable to save game, UTGPPairSaveGame instance was nullptr"))
+		return;
+	}
+	LoadInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadInstance->SaveSlotName, LoadInstance->UserID));
+	
+	
+	PlayerName = LoadInstance->PlayerName;
+	CurrentLevel = LoadInstance->PlayerOverallLevel;
+	CurrentLevelExp = LoadInstance->PlayerExpEarnedTowardsNextLevel;
+	PlayerLevels = LoadInstance->PlayerSkillLevels;
+	TotalBattlesWon = LoadInstance->TotalBattlesWon;
 }
 
 // Setter for player name.

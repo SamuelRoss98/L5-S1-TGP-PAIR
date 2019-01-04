@@ -14,6 +14,11 @@ void ACombatGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Make the game instance load the latest save.
+	UTGPPairGameInstance* GameInst = Cast<UTGPPairGameInstance>(GetGameInstance());
+	if (GameInst != nullptr)
+		GameInst->LoadSaveGame();
+
 	SpawnCombatants();
 }
 
