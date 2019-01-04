@@ -9,6 +9,16 @@
 
 #include "CombatPlayer.generated.h"
 
+UENUM(BlueprintType)
+enum class EPlayerSkillType : uint8
+{
+	Mana			UMETA(DisplayName = "Mana"),
+	Luck	 		UMETA(DisplayName = "Luck"),
+	Strength		UMETA(DisplayName = "Strength"),
+	Defense			UMETA(DisplayName = "Defense"),
+	Speed			UMETA(DisplayName = "Speed")
+};
+
 /**
  * 
  */
@@ -42,6 +52,10 @@ public:
 	UFUNCTION(BlueprintPure)
 	int GetOverallLevel();
 
+	// Returns the level of a requested skill.
+	UFUNCTION(BlueprintPure)
+	int GetSkillLevel(EPlayerSkillType Type);
+
 private:
 	// Increases the players level.
 	void LevelUp();
@@ -68,21 +82,21 @@ protected:
 
 	// Number of skill points for mana skill.
 	UPROPERTY(VisibleAnywhere)
-	int SkillInvestmentMana = 0;
+	int SkillLevelMana = 0;
 
 	// Number of skill points for luck skill.
 	UPROPERTY(VisibleAnywhere)
-	int SkillInvestmentLuck = 0;
+	int SkillLevelLuck = 0;
 
 	// Number of skill points for strength skill.
 	UPROPERTY(VisibleAnywhere)
-	int SkillInvestmentStrength = 0;
+	int SkillLevelStrength = 0;
 
 	// Number of skill points for defense skill.
 	UPROPERTY(VisibleAnywhere)
-	int SkillInvestmentDefense = 0;
+	int SkillLevelDefense = 0;
 
 	// Number of skill points for speed skill.
 	UPROPERTY(VisibleAnywhere)
-	int SkillInvestmentSpeed = 0;
+	int SkillLevelSpeed = 0;
 };

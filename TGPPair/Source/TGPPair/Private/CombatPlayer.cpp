@@ -8,11 +8,11 @@ FStatPack UCombatPlayer::GetPlayerStatPack() const
 	FStatPack Stats = FStatPack();
 
 	Stats.Health = 90 + (10 * OverallLevel);
-	Stats.Mana = 30 + (5 * SkillInvestmentMana);
-	Stats.Luck = 4 * SkillInvestmentLuck;
-	Stats.Speed = 3 * SkillInvestmentSpeed;
-	Stats.MeleeAttack = 5 + (3 * SkillInvestmentStrength);
-	Stats.MeleeDefense = 2 * SkillInvestmentDefense;
+	Stats.Mana = 30 + (5 * SkillLevelMana);
+	Stats.Luck = 4 * SkillLevelLuck;
+	Stats.Speed = 3 * SkillLevelSpeed;
+	Stats.MeleeAttack = 5 + (3 * SkillLevelStrength);
+	Stats.MeleeDefense = 2 * SkillLevelDefense;
 
 	return Stats;
 }
@@ -59,6 +59,26 @@ int UCombatPlayer::GetExpEarnedAtCurrentLevel()
 int UCombatPlayer::GetOverallLevel()
 {
 	return OverallLevel;
+}
+
+// Returns the level of a requested skill.
+int UCombatPlayer::GetSkillLevel(EPlayerSkillType Type)
+{
+	switch (Type)
+	{
+	case EPlayerSkillType::Mana:
+		return SkillLevelMana;
+	case EPlayerSkillType::Luck:
+		return SkillLevelLuck;
+	case EPlayerSkillType::Strength:
+		return SkillLevelStrength;
+	case EPlayerSkillType::Defense:
+		return SkillLevelDefense;
+	case EPlayerSkillType::Speed:
+		return SkillLevelSpeed;
+	default:
+		return 0;
+	}
 }
 
 // Increases the players level.
