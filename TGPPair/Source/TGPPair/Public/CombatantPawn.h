@@ -139,6 +139,7 @@ protected:
 	UInventoryComponent* Inventory = nullptr;
 
 	// Character this combatant was created as.
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	FNamedStatPack CharacterBaseValues;
 
 	// Current state of the combatants stats.

@@ -32,6 +32,7 @@ public:
 
 	// Player stats
 	// --------------------------------------------------
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	FString PlayerName = "Ivar the Nameless";
 	int AvailableSkillPoints = 0;
 	int OverallLevel = 1;

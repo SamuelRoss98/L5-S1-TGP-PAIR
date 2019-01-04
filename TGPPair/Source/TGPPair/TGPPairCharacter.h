@@ -6,16 +6,13 @@
 #include "GameFramework/Character.h"
 #include "TGPPairCharacter.generated.h"
 
-<<<<<<< HEAD
-UCLASS(config = Game)
-=======
-UCLASS(Blueprintable)
->>>>>>> combat-2.0
+//UCLASS(config = Game)
+//UCLASS(Blueprintable)
+UCLASS()
 class ATGPPairCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-<<<<<<< HEAD
 		/** Camera boom positioning the camera behind the character */
 		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* CameraBoom;
@@ -79,15 +76,10 @@ protected:
 	// End of APawn interface
 
 public:
-	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-};
-=======
-public:
-	ATGPPairCharacter();
 
+public:
 	// Called every frame.
 	virtual void Tick(float DeltaSeconds) override;
 
@@ -101,15 +93,10 @@ public:
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* TopDownCameraComponent;
-
-	/** Camera boom positioning the camera above the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
+		class UCameraComponent* TopDownCameraComponent;
 
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UDecalComponent* CursorToWorld;
+		class UDecalComponent* CursorToWorld;
 };
 
->>>>>>> combat-2.0

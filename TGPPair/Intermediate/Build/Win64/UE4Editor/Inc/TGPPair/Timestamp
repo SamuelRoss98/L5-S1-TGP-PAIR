@@ -1,3 +1,16 @@
-C:\Users\h014654h\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairCharacter.h
-C:\Users\h014654h\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairGameMode.h
-C:\Users\h014654h\Documents\GitHub\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairPlayerController.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatAction.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatAIController.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatantPawn.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatDecisionInterface.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatGameModeBase.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatPlayer.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\CombatPlayerController.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\InventoryComponent.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\InventorySlot.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\NamedStatPack.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\StatPack.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\TGPPairGameInstance.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\Public\TGPPairSaveGame.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairCharacter.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairGameMode.h
+D:\Documents\Game Development\L5-S1-TGP-PAIR\TGPPair\Source\TGPPair\TGPPairPlayerController.h

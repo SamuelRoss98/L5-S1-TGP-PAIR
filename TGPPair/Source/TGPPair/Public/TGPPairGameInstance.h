@@ -45,6 +45,12 @@ public:
 	// Increment total battles won.
 	void IncrementWonBattles();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		FVector playerPositionBeforeBattle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int questProgressionBeforeBattle;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UCombatPlayer* Player = nullptr;

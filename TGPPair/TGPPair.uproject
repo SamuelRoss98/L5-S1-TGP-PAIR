@@ -7,7 +7,6 @@
 		{
 			"Name": "TGPPair",
 			"Type": "Runtime",
-<<<<<<< HEAD
 			"LoadingPhase": "Default"
 		}
 	],
@@ -15,14 +14,6 @@
 		{
 			"Name": "SteamVR",
 			"Enabled": false
-=======
-			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine",
-				"AIModule",
-				"CoreUObject"
-			]
->>>>>>> combat-2.0
 		}
 	]
 }

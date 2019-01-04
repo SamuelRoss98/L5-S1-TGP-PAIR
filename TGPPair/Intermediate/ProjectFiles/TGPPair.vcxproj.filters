@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\TGPPair.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{EF98BA9A-D8D6-4BF4-A6F2-03063F74D63F}</UniqueIdentifier>
+			<UniqueIdentifier>{5488F15D-01B1-4516-8AD8-6E15B29DF3D6}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{2E8BC459-72B0-4398-98BE-95A12937EFFF}</UniqueIdentifier>
+			<UniqueIdentifier>{7FA9AA40-47E1-407E-8547-17FBC86FE24E}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\TGPPair">
-			<UniqueIdentifier>{9CCD3EE4-A8A0-4DC7-92B1-FF57DFC97ADD}</UniqueIdentifier>
+			<UniqueIdentifier>{2C55D5FC-9675-4518-B086-905A48B15FA8}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair\TGPPair.Build.cs">
 			<Filter>Source\TGPPair</Filter>
@@ -59,6 +59,90 @@
 		</ClCompile >
 		<ClInclude Include="..\..\Source\TGPPair\TGPPairPlayerController.h">
 			<Filter>Source\TGPPair</Filter>
+		</ClInclude >
+		<Filter Include="Source\TGPPair\Private">
+			<UniqueIdentifier>{F0CF5836-23F7-43AD-AEFF-236ECE22EBC7}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatAction.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatAIController.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatantPawn.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatDecisionInterface.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatGameModeBase.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatPlayer.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\CombatPlayerController.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\InventoryComponent.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\InventorySlot.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\NamedStatPack.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\StatPack.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\TGPPairGameInstance.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TGPPair\Private\TGPPairSaveGame.cpp">
+			<Filter>Source\TGPPair\Private</Filter>
+		</ClCompile >
+		<Filter Include="Source\TGPPair\Public">
+			<UniqueIdentifier>{69B9157F-1944-427D-97AB-5BFB438205BE}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatAction.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatAIController.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatantPawn.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatDecisionInterface.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatGameModeBase.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatPlayer.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\CombatPlayerController.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\InventoryComponent.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\InventorySlot.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\NamedStatPack.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\StatPack.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\TGPPairGameInstance.h">
+			<Filter>Source\TGPPair\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TGPPair\Public\TGPPairSaveGame.h">
+			<Filter>Source\TGPPair\Public</Filter>
 		</ClInclude >
 	</ItemGroup>
 </Project>
