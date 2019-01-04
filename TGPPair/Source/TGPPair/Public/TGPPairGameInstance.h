@@ -18,6 +18,10 @@ class TGPPAIR_API UTGPPairGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 public:
+	// Saves the game.
+	UFUNCTION(BlueprintCallable)
+	void Save() const;
+
 	// Setter for player name.
 	UFUNCTION(BlueprintCallable)
 	void SetPlayerName(FString Name);

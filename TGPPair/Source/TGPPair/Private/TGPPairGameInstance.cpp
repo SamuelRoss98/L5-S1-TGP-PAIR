@@ -2,6 +2,29 @@
 
 #include "TGPPairGameInstance.h"
 
+#include "TGPPairSaveGame.h"
+#include "Engine/Classes/Kismet/GameplayStatics.h"
+
+// Saves the game.
+void UTGPPairGameInstance::Save() const
+{
+	UTGPPairSaveGame* SaveInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::CreateSaveGameObject(UTGPPairSaveGame::StaticClass()));
+	if (SaveInstance == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Unable to save game, save instance was nullptr"))
+		return;
+	}
+
+	// Save data.
+	SaveInstance->PlayerName = PlayerName;
+	SaveInstance->PlayerOverallLevel = CurrentLevel;
+	SaveInstance->PlayerExpEarnedTowardsNextLevel = CurrentLevelExp;
+	SaveInstance->PlayerSkillLevels = PlayerLevels;
+	SaveInstance->TotalBattlesWon = TotalBattlesWon;
+
+	UGameplayStatics::SaveGameToSlot(SaveInstance, SaveInstance->SaveSlotName, SaveInstance->UserID);
+}
+
 // Setter for player name.
 void UTGPPairGameInstance::SetPlayerName(FString Name)
 {
