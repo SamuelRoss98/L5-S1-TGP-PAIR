@@ -29,13 +29,12 @@ void UTGPPairGameInstance::SaveGame() const
 void UTGPPairGameInstance::LoadSaveGame()
 {
 	UTGPPairSaveGame* LoadInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::CreateSaveGameObject(UTGPPairSaveGame::StaticClass()));
+	LoadInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadInstance->SaveSlotName, LoadInstance->UserID));
 	if (LoadInstance == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Unable to save game, UTGPPairSaveGame instance was nullptr"))
+		UE_LOG(LogTemp, Error, TEXT("Unable to save game, UTGPPairSaveGame instance was nullptr, likely save file is missing."))
 		return;
 	}
-	LoadInstance = Cast<UTGPPairSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadInstance->SaveSlotName, LoadInstance->UserID));
-	
 	
 	PlayerName = LoadInstance->PlayerName;
 	CurrentLevel = LoadInstance->PlayerOverallLevel;
