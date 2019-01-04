@@ -76,5 +76,10 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
+<<<<<<< HEAD:TGPPair/.gitignore
 # Removes standard assets that won't be changed.
 StandardAssets/*
+=======
+Content/StandardAssets/*
+Content/StarterContent/*
+>>>>>>> combat-2.0:TGPPair/.gitignore
