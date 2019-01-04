@@ -20,6 +20,16 @@ class TGPPAIR_API UTGPPairGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 public:
+	UTGPPairGameInstance();
+
+	// Returns true if a save file exists.
+	UFUNCTION(BlueprintCallable)
+	bool DoesSaveFileExist() const;
+
+	// Creates a default save file.
+	UFUNCTION(BlueprintCallable)
+	void CreateDefaultSave() const;
+
 	// Saves the game.
 	UFUNCTION(BlueprintCallable)
 	void SaveGame() const;

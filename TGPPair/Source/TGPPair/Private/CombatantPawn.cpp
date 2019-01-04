@@ -63,7 +63,7 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 	if (Controller == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Invalid controller passed to ACombatantPawn on initialization"))
-			return false;
+		return false;
 	}
 	
 	// If we are the player grab our name from the game instance.
@@ -79,7 +79,6 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 			{
 				CharacterBaseValues.Name = CombatPlayer->GetPlayerName();
 				CharacterBaseValues.Stats = CombatPlayer->GetPlayerStatPack();
-				UE_LOG(LogTemp, Error, TEXT("Mana is: %s"), *FString::FromInt(CharacterBaseValues.Stats.Mana))
 				CurrentStats = CharacterBaseValues.Stats;
 			}
 		}
@@ -263,10 +262,6 @@ void ACombatantPawn::ApplyDamage(FStatPack DamageStatPack)
 	int MeleeDamage = FMath::Clamp(DamageStatPack.MeleeAttack - CurrentStats.MeleeDefense, 0, DamageStatPack.MeleeAttack);
 	int MagicDamage = FMath::Clamp(DamageStatPack.MagicAttack - CurrentStats.MagicDefense, 0, DamageStatPack.MagicAttack);
 	int HealthDamage = MeleeDamage + MagicDamage;
-
-	FString MeleeStr = FString::FromInt(MeleeDamage);
-	FString MagicStr = FString::FromInt(MagicDamage);
-	UE_LOG(LogTemp, Error, TEXT("Melee damage: %s, Magic damage: %s."), *MeleeStr, *MagicStr)
 
 	// Apply stat changes.
 	CurrentStats.Health -= HealthDamage;

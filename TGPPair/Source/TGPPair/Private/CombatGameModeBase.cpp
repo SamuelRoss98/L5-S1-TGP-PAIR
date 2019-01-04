@@ -31,7 +31,6 @@ void ACombatGameModeBase::Tick(float DeltaTime)
 // Resets the combatants ready for a new round.
 void ACombatGameModeBase::ResetForNewRound()
 {
-	UE_LOG(LogTemp, Error, TEXT("Reset for new round."))
 	for (int i = 0; i < EnemyCombatants.Num(); ++i)
 	{
 		if (EnemyCombatants[i] != nullptr)

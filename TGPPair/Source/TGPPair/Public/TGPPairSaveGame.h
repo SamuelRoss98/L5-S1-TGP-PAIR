@@ -21,24 +21,32 @@ public:
 	UTGPPairSaveGame();
 
 public:
+	// Save properties
+	// --------------------------------------------------
 	UPROPERTY(VisibleAnywhere)
 	FString SaveSlotName;
 
 	UPROPERTY(VisibleAnywhere)
 	uint32 UserID;
+	// --------------------------------------------------
 
-	UPROPERTY(VisibleAnywhere)
-	FString PlayerName;
-
-	UPROPERTY(VisibleAnywhere)
-	int PlayerOverallLevel;
-
-	UPROPERTY(VisibleAnywhere)
-	int PlayerExpEarnedTowardsNextLevel;
+	// Player stats
+	// --------------------------------------------------
+	FString PlayerName = "Ivar the Nameless";
+	int AvailableSkillPoints = 0;
+	int OverallLevel = 1;
+	int ExpEarnedAtCurrentLevel = 0;
+	int SkillLevelMana = 0;
+	int SkillLevelLuck = 0;
+	int SkillLevelStrength = 0;
+	int SkillLevelDefense = 0;
+	int SkillLevelSpeed = 0;
+	// --------------------------------------------------
 	
-	UPROPERTY(VisibleAnywhere)
-	FStatPack PlayerSkillLevels;
 
+	// Misc. stats
+	// --------------------------------------------------
 	UPROPERTY(VisibleAnywhere)
-	int TotalBattlesWon;
+	int TotalBattlesWon = 0;
+	// --------------------------------------------------
 };

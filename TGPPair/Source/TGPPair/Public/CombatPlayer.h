@@ -28,9 +28,16 @@ class TGPPAIR_API UCombatPlayer : public UObject
 	GENERATED_BODY()
 	
 public:
+	// Set the values of the CombatPlayer.
+	void SetValues(FString name, int availableSkillPoints, int overallLevel, int expAtLevel, int manaSkill, int strengthSkill, int luckSkill, int defenseSkill, int speedSkill);
+
 	// Returns the players name.
 	UFUNCTION(BlueprintPure)
 	FString GetPlayerName() const;
+
+	// Returns the amount of available (unspent) skillpoints.
+	UFUNCTION(BlueprintPure)
+	int GetAvailableSkillPoints();
 
 	// Returns the player stat pack based on their level/skills.
 	UFUNCTION(BlueprintPure)
