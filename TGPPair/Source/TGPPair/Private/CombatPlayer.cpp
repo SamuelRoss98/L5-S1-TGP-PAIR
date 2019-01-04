@@ -2,6 +2,12 @@
 
 #include "CombatPlayer.h"
 
+// Returns the players name.
+FString UCombatPlayer::GetPlayerName() const
+{
+	return PlayerName;
+}
+
 // Returns the player stat pack based on their level/skills.
 FStatPack UCombatPlayer::GetPlayerStatPack() const
 {

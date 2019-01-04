@@ -8,6 +8,7 @@
 #include "CombatPlayerController.h"
 #include "CombatAIController.h"
 #include "TGPPairGameInstance.h"
+#include "CombatPlayer.h"
 
 // Called when the game starts or when spawned
 void ACombatGameModeBase::BeginPlay()
@@ -151,7 +152,11 @@ void ACombatGameModeBase::HandleFinish()
 	// Apply exp.
 	UTGPPairGameInstance* GameInst = Cast<UTGPPairGameInstance>(GetGameInstance());
 	if (GameInst != nullptr)
-		GameInst->GainExp(CalculateExpEarned());
+	{
+		UCombatPlayer* CombatPlayer = GameInst->GetPlayer();
+		if(CombatPlayer != nullptr)
+			CombatPlayer->AwardExp(CalculateExpEarned());
+	}
 
 	// Notify player controller the battle is over.
 	ACombatPlayerController* CombatPlayerController = Cast<ACombatPlayerController>(GetWorld()->GetFirstPlayerController());

@@ -10,6 +10,7 @@
 #include "InventoryComponent.h"
 #include "TGPPairGameInstance.h"
 #include "CombatGameModeBase.h"
+#include "CombatPlayer.h"
 
 // Sets default values
 ACombatantPawn::ACombatantPawn()
@@ -72,11 +73,15 @@ bool ACombatantPawn::Initialize(FNamedStatPack Character, bool bPlayer, ICombatD
 		TGPGI = Cast<UTGPPairGameInstance>(GetGameInstance());
 		if (TGPGI != nullptr)
 		{
-			CharacterBaseValues.Name = TGPGI->GetPlayerName();
-			CharacterBaseValues.Stats = TGPGI->GetPlayerCurrentBaseStats();
-			CurrentStats = CharacterBaseValues.Stats;
-			FString dmg = FString::FromInt(CurrentStats.MeleeAttack);
-			UE_LOG(LogTemp, Error, TEXT("Player melee damage: %s"), *dmg)
+			UCombatPlayer* CombatPlayer = nullptr;
+			CombatPlayer = TGPGI->GetPlayer();
+			if (CombatPlayer != nullptr)
+			{
+				CharacterBaseValues.Name = CombatPlayer->GetPlayerName();
+				CharacterBaseValues.Stats = CombatPlayer->GetPlayerStatPack();
+				UE_LOG(LogTemp, Error, TEXT("Mana is: %s"), *FString::FromInt(CharacterBaseValues.Stats.Mana))
+				CurrentStats = CharacterBaseValues.Stats;
+			}
 		}
 	}
 

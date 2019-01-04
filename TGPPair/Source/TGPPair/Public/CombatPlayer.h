@@ -28,6 +28,10 @@ class TGPPAIR_API UCombatPlayer : public UObject
 	GENERATED_BODY()
 	
 public:
+	// Returns the players name.
+	UFUNCTION(BlueprintPure)
+	FString GetPlayerName() const;
+
 	// Returns the player stat pack based on their level/skills.
 	UFUNCTION(BlueprintPure)
 	FStatPack GetPlayerStatPack() const;
