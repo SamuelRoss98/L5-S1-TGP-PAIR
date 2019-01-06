@@ -6,6 +6,7 @@
 #include "Engine/GameInstance.h"
 
 #include "StatPack.h"
+#include "InventoryComponent.h"
 
 #include "TGPPairGameInstance.generated.h"
 
@@ -50,6 +51,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int questProgressionBeforeBattle;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		UInventoryComponent* PlayerInventory;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
