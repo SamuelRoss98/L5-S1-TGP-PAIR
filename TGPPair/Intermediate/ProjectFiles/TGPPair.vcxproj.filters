@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\TGPPair.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{5488F15D-01B1-4516-8AD8-6E15B29DF3D6}</UniqueIdentifier>
+			<UniqueIdentifier>{BDBF9C3E-C36B-42A7-804C-ACDD632D0203}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{7FA9AA40-47E1-407E-8547-17FBC86FE24E}</UniqueIdentifier>
+			<UniqueIdentifier>{EEFAE08D-62E4-446F-BC60-4192A4A8B33B}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\TGPPair">
-			<UniqueIdentifier>{2C55D5FC-9675-4518-B086-905A48B15FA8}</UniqueIdentifier>
+			<UniqueIdentifier>{7A6F7B67-5EDE-4F80-9993-9E6EB0114974}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\TGPPair\TGPPair.Build.cs">
 			<Filter>Source\TGPPair</Filter>
@@ -61,7 +61,7 @@
 			<Filter>Source\TGPPair</Filter>
 		</ClInclude >
 		<Filter Include="Source\TGPPair\Private">
-			<UniqueIdentifier>{F0CF5836-23F7-43AD-AEFF-236ECE22EBC7}</UniqueIdentifier>
+			<UniqueIdentifier>{33BEB5B7-203B-4DF3-80FD-62D3A0FE9CCB}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\TGPPair\Private\CombatAction.cpp">
 			<Filter>Source\TGPPair\Private</Filter>
@@ -103,7 +103,7 @@
 			<Filter>Source\TGPPair\Private</Filter>
 		</ClCompile >
 		<Filter Include="Source\TGPPair\Public">
-			<UniqueIdentifier>{69B9157F-1944-427D-97AB-5BFB438205BE}</UniqueIdentifier>
+			<UniqueIdentifier>{E6D1C973-1BFB-40E3-9264-A7EEBBECC406}</UniqueIdentifier>
 		</Filter>
 		<ClInclude Include="..\..\Source\TGPPair\Public\CombatAction.h">
 			<Filter>Source\TGPPair\Public</Filter>
